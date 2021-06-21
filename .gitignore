@@ -1,14 +1,2 @@
 .DS_Store
 tmp
-/secret
-build
-node_modules
-.next
-/log
-!/log/.keep
-/public/system
-/storage/*
-!/storage/.keep
-.cache
-dash-log
-.build
