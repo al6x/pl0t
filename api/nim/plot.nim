@@ -4,6 +4,7 @@ import std/json, std/jsonutils
 # --------------------------------------------------------------------------------------------------
 # Schema -------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
+# Please vote for this issue to make Nim enums better https://github.com/nim-lang/RFCs/issues/373
 type PlotDataType* {.pure.} = enum
   string_e  = "string",
   number_e  = "number",
@@ -100,34 +101,42 @@ type TableOptions*[Row] = object
                            # use false for ordinary sorging
 
 
-var plot_base_url*  = string.none
-var plot_api_token* = string.none
+type PlotConfig* = object
+  base_url*:  string
+  api_token*: string
+
+
+# --------------------------------------------------------------------------------------------------
+# Support ------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
+template throw(message: string) = raise Exception.new_exception(message)
 
 
 # --------------------------------------------------------------------------------------------------
 # API ----------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
+var config = PlotConfig.none
+
+proc configure_plot*(base_url: string, api_token: string): void =
+  if base_url.ends_with("/"): throw "base_url shouldn't end with /!"
+  config = PlotConfig(base_url: base_url, api_token: api_token).some
+
+
 proc build_plot_url(path: string): string =
-  if plot_base_url.is_none: raise Exception.new_exception("plot_base_url not defined!")
-  if plot_base_url.get.ends_with("/"):
-    raise Exception.new_exception("plot_base_url shouldn't end with /!")
-
-  if plot_api_token.is_none: raise Exception.new_exception("plot_api_token not defined!")
-
-  if not path.ends_with(".json"): raise Exception.new_exception("path should end with .json!")
-  if not path.starts_with("/"):   raise Exception.new_exception("path should start with /")
-
+  if config.is_none: throw "plot config not defined, use configure_plot to define it!"
+  if not path.ends_with(".json"): throw "path should end with .json!"
+  if not path.starts_with("/"): throw "path should start with /"
   fmt"{plot_base_url.get}{path}?api_token={plot_api_token.get}"
 
 
 # Table.plot ---------------------------------------------------------------------------------------
 proc plot*(path: string, table: TableOptions): void =
-  let url        = build_plot_url(path)
+  let url        = build_plot_url path
   let table_json = table.to_json.pretty
 
   let client = new_http_client()
   defer: client.close
-  echo client.post_content(url, table_json)
+  discard client.post_content(url, table_json)
 
 proc plot*[Row](
   path:       string,
@@ -148,49 +157,28 @@ proc plot*[Row](
                                        # use false for ordinary sorging
 ): void =
   let table = TableOptions[Row](
-    columns:    columns,
-    rows:       rows,
-    title:      title,
-
-    order:      order,
-    query:      query,
-
-    id:         id,
-    selectable: selectable,
-    sortable:   sortable,
-    toolbar:    toolbar,
-    warnings:   warnings,
-
-    wsort:      wsort
+    columns: columns, rows: rows, title: title, order: order, query: query, id: id,
+    selectable: selectable, sortable: sortable, toolbar: toolbar, warnings: warnings, wsort: wsort
   )
-  plot(path, table)
+  plot path, table
 
 
 # del_plot -----------------------------------------------------------------------------------------
 proc del_plot*(path: string): void =
-  if plot_base_url.is_none:  raise Exception.new_exception("plot_base_url not defined!")
-  if plot_api_token.is_none: raise Exception.new_exception("plot_api_token not defined!")
-
-  let url = fmt"{plot_base_url.get}{path}?api_token={plot_api_token.get}"
-
+  let url = build_plot_url path
   let client = new_http_client()
   defer: client.close
-
-  echo client.delete(url).repr()
+  discard client.delete(url)
 
 
 # --------------------------------------------------------------------------------------------------
 # Test ---------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
 if is_main_module:
-  plot_api_token = "".some
-  plot_base_url  = "http://al6x.plot.com".some
+  configure_plot "http://al6x.plot.com", "stub_token"
 
   let rows = @[
     (name: "Jim",  age: 30),
     (name: "Kate", age: 27)
   ]
-  plot("/nim_test/table.json", rows = rows)
-
-
-# Please vote for this issue to make Nim enums better https:#github.com/nim-lang/RFCs/issues/373
+  plot "/nim_test/table.json", rows = rows
