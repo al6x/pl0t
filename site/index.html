@@ -13,26 +13,26 @@
 </head>
 <body class="bg-gray-100">
   <div class="mx-auto max-w-2xl py-10 px-7 space-y-8 bg-white">
-    <div class="text-4xl">Plot and visualise data</div>
+    <div class="text-4xl text-center">Plot and visualise data</div>
 
     <div class="space-y-4">
       <!-- <h class="text-2xl">How to use</h> -->
 
       <p>
-        1 <a class="font-bold text-blue-700" href="/login">Login</a> with Github.
-        You will be redirected to your subdomain.
+        1 <a class="font-bold text-blue-700" href="/login">Login</a> with Github,
+        you will be redirected to your subdomain
       </p>
-      <pre class="text-xs ml-4 text-gray-500">http://pl0t.com/login</pre>
+      <pre class="text-xs ml-4 text-gray-500">http://<b class="text-blue-700">your-subdomain</b>.pl0t.com</pre>
 
       <p>2 <a class="font-bold text-blue-700" href="/api_tokens">Get</a> API token</p>
       <pre class="text-xs ml-4 text-gray-500">http://pl0t.com/api_tokens</pre>
 
       <p>3 Create example table, replace subdomain and API token with yours</p>
       <pre class="text-xs ml-4 text-gray-500">curl \
-  --request POST \
-  --header "api_token: <b class="text-blue-700">your-api-token</b>" \
-  --data '{"rows":[[11, 12], [21, 22]]}' \
-  http://<b class="text-blue-700">your-subdomain</b>.pl0t.com/sample_table.json</pre>
+--request POST \
+--header "api_token: <b class="text-blue-700">your-api-token</b>" \
+--data '{"rows":[[11, 12], [21, 22]]}' \
+http://<b class="text-blue-700">your-subdomain</b>.pl0t.com/sample_table.json</pre>
 
       <p>4 Open table in Browser, replace subdomain in URL with yours</p>
       <pre class="text-xs ml-4 text-gray-500">http://<b class="text-blue-700">your-subdomain</b>.pl0t.com/sample_table.json:table-dev</pre>
