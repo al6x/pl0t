@@ -1,4 +1,4 @@
-import std/strutils, std/options, std/httpclient, std/strformat, std/sugar
+import std/strutils, std/options, std/httpclient, std/strformat, std/sugar, std/os
 import std/json, std/jsonutils
 
 # --------------------------------------------------------------------------------------------------
@@ -101,11 +101,6 @@ type TableOptions*[Row] = object
                            # use false for ordinary sorging
 
 
-type PlotConfig* = object
-  base_url*:  string
-  api_token*: string
-
-
 # --------------------------------------------------------------------------------------------------
 # Support ------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
@@ -115,18 +110,17 @@ template throw(message: string) = raise Exception.new_exception(message)
 # --------------------------------------------------------------------------------------------------
 # API ----------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
-var config = PlotConfig.none
-
-proc configure_plot*(base_url: string, api_token: string): void =
-  if base_url.ends_with("/"): throw "base_url shouldn't end with /!"
-  config = PlotConfig(base_url: base_url, api_token: api_token).some
-
+var plot_base_url*  = get_env("plot_base_url", "")
+var plot_api_token* = get_env("plot_api_token", "")
 
 proc build_plot_url(path: string): string =
-  if config.is_none: throw "plot config not defined, use configure_plot to define it!"
+  if plot_base_url == "":
+    throw "plot_base_url not defined, define it explicitly or as as `plot_base_url` environment variable"
+  if plot_api_token == "":
+    throw "plot_api_token not defined, define it explicitly or as as `plot_api_token` environment variable"
   if not path.ends_with(".json"): throw "path should end with .json!"
   if not path.starts_with("/"): throw "path should start with /"
-  fmt"{plot_base_url.get}{path}?api_token={plot_api_token.get}"
+  fmt"{plot_base_url}{path}?api_token={plot_api_token}"
 
 
 # Table.plot ---------------------------------------------------------------------------------------
@@ -175,7 +169,8 @@ proc del_plot*(path: string): void =
 # Test ---------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
 if is_main_module:
-  configure_plot "http://al6x.plot.com", "stub_token"
+  plot_base_url  = "http://al6x.plot.com"
+  plot_api_token = "stub"
 
   let rows = @[
     (name: "Jim",  age: 30),
