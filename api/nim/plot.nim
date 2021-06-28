@@ -34,13 +34,14 @@ converter to_plot_format_type*(s: string): PlotFormatType = parse_enum[PlotForma
 
 type FormatOptions* = object
   align*: Option[PlotAlign]
+  small*: Option[bool] # small font size, false by default
 
   case `type`: PlotFormatType
   of "string":
     discard
 
   of "number":
-    round*: Option[int]
+    round*: Option[int] # default = 2
 
   of "line":
     max*:   Option[float] # custom max value for line length, if not provided max value will be calculated
@@ -83,21 +84,22 @@ proc to_json_hook*(o: PlotTableColumn): JsonNode =
 
 
 type TableOptions*[Row] = object
-  columns*:    Option[seq[PlotTableColumn]]
-  rows*:       seq[Row]
-  title*:      Option[string]
+  columns*:       Option[seq[PlotTableColumn]]
+  alter_columns*: Option[seq[PlotTableColumn]] # Sometimes it's easier to override only some columns
+  rows*:          seq[Row]
+  title*:         Option[string]
 
-  order*:      Option[seq[PlotColumnOrder]]
-  query*:      Option[string]  # default = "" filter query
+  order*:         Option[seq[PlotColumnOrder]]
+  query*:         Option[string]  # default = "" filter query
 
-  id*:         Option[string]
-  selectable*: Option[bool] # default = true
-  sortable*:   Option[bool] # default = true
-  toolbar*:    Option[bool] # default = true
-  warnings*:   Option[bool] # default = true
-  # `_i`*:       Option[bool] # default = false, show row indices
+  id*:            Option[string]
+  selectable*:    Option[bool] # default = true
+  sortable*:      Option[bool] # default = true
+  toolbar*:       Option[bool] # default = true
+  warnings*:      Option[bool] # default = true
+  # `_i`*:          Option[bool] # default = false, show row indices
 
-  wsort*:      Option[bool] # default = true, weighted sorting see `wsortTable` for details,
+  wsort*:         Option[bool] # default = true, weighted sorting see `wsortTable` for details,
                            # use false for ordinary sorging
 
 
@@ -133,25 +135,26 @@ proc plot*(path: string, table: TableOptions): void =
   discard client.post_content(url, table_json)
 
 proc plot*[Row](
-  path:       string,
-  columns:    Option[seq[PlotTableColumn]] = seq[PlotTableColumn].none,
-  rows:       seq[Row] = Row.none,
-  title:      Option[string] = string.none,
+  path:          string,
+  columns:       Option[seq[PlotTableColumn]] = seq[PlotTableColumn].none,
+  alter_columns: Option[seq[PlotTableColumn]] = seq[PlotTableColumn].none,
+  rows:          seq[Row] = Row.none,
+  title:         Option[string] = string.none,
 
-  order:      Option[seq[PlotColumnOrder]] = seq[PlotColumnOrder].none,
-  query:      Option[string] = string.none,  # default = "" filter query
+  order:         Option[seq[PlotColumnOrder]] = seq[PlotColumnOrder].none,
+  query:         Option[string] = string.none,  # default = "" filter query
 
-  id:         Option[string] = string.none,
-  selectable: Option[bool] = bool.none, # default = true
-  sortable:   Option[bool] = bool.none, # default = true
-  toolbar:    Option[bool] = bool.none, # default = true
-  warnings:   Option[bool] = bool.none, # default = true
+  id:            Option[string] = string.none,
+  selectable:    Option[bool] = bool.none, # default = true
+  sortable:      Option[bool] = bool.none, # default = true
+  toolbar:       Option[bool] = bool.none, # default = true
+  warnings:      Option[bool] = bool.none, # default = true
 
-  wsort:      Option[bool] = bool.none # default = true, weighted sorting see `wsortTable` for details,
+  wsort:         Option[bool] = bool.none # default = true, weighted sorting see `wsortTable` for details,
                                        # use false for ordinary sorging
 ): void =
   let table = TableOptions[Row](
-    columns: columns, rows: rows, title: title, order: order, query: query, id: id,
+    columns: columns, alter_columns: alter_columns, rows: rows, title: title, order: order, query: query, id: id,
     selectable: selectable, sortable: sortable, toolbar: toolbar, warnings: warnings, wsort: wsort
   )
   plot path, table

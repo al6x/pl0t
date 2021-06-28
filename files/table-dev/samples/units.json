@@ -3,7 +3,7 @@
     { "id": "name",     "title": "Name",   "type": "string" },
     { "id": "family",   "title": "Family", "type": "string" },
     { "id": "age",      "title": "Age",    "type": "number" },
-    { "id": "hp",       "title": "HP",     "type": "number", "format": ["line", { "ticks": [100] }] },
+    { "id": "hp",       "title": "HP",     "type": "number", "format": { "type": "line", "ticks": [100] } },
     { "id": "is_alive", "title": "Alive",  "type": "boolean" }
   ],
   "rows": [
