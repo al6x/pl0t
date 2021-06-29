@@ -143,32 +143,6 @@ proc plot*[Row](path: string, rows: seq[Row], options: JsonNode): void =
   plot(path, rows, options.json_to(TableOptions))
 
 
-# proc plot*[Row](
-#   path:          string,
-#   columns:       Option[seq[PlotTableColumn]] = seq[PlotTableColumn].none,
-#   alter_columns: Option[seq[PlotTableColumn]] = seq[PlotTableColumn].none,
-#   rows:          seq[Row] = Row.none,
-#   title:         Option[string] = string.none,
-
-#   order:         Option[seq[PlotColumnOrder]] = seq[PlotColumnOrder].none,
-#   query:         Option[string] = string.none,  # default = "" filter query
-
-#   id:            Option[string] = string.none,
-#   selectable:    Option[bool] = bool.none, # default = true
-#   sortable:      Option[bool] = bool.none, # default = true
-#   toolbar:       Option[bool] = bool.none, # default = true
-#   warnings:      Option[bool] = bool.none, # default = true
-
-#   wsort:         Option[bool] = bool.none # default = true, weighted sorting see `wsortTable` for details,
-#                                        # use false for ordinary sorging
-# ): void =
-#   let table = TableOptions[Row](
-#     columns: columns, alter_columns: alter_columns, rows: rows, title: title, order: order, query: query, id: id,
-#     selectable: selectable, sortable: sortable, toolbar: toolbar, warnings: warnings, wsort: wsort
-#   )
-#   plot path, table
-
-
 # del_plot -----------------------------------------------------------------------------------------
 proc del_plot*(path: string): void =
   let url = build_plot_url path
