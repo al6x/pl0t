@@ -12,6 +12,7 @@ type PlotDataType* {.pure.} = enum
   unknown_e = "unknown"
 
 converter to_plot_data_type*(s: string): PlotDataType = parse_enum[PlotDataType](s)
+func to_json_hook*(e: PlotDataType): JsonNode = ($e).to_json
 
 
 type PlotAlign* {.pure.} = enum
@@ -20,6 +21,7 @@ type PlotAlign* {.pure.} = enum
   right_e  = "right"
 
 converter to_plot_align*(s: string): PlotAlign = parse_enum[PlotAlign](s)
+func to_json_hook*(e: PlotAlign): JsonNode = ($e).to_json
 
 
 type PlotFormatType* {.pure.} = enum
@@ -30,13 +32,14 @@ type PlotFormatType* {.pure.} = enum
   unknown_e = "unknown"
 
 converter to_plot_format_type*(s: string): PlotFormatType = parse_enum[PlotFormatType](s)
+func to_json_hook*(e: PlotFormatType): JsonNode = ($e).to_json
 
 
 type FormatOptions* = object
   align*: Option[PlotAlign]
   small*: Option[bool] # small font size, false by default
 
-  case `type`: PlotFormatType
+  case `type`*: PlotFormatType
   of "string":
     discard
 
@@ -60,6 +63,7 @@ type PlotOrder* {.pure.} = enum
   asc_e = "asc", desc_e = "desc"
 
 converter to_plot_order*(s: string): PlotOrder = parse_enum[PlotOrder](s)
+func to_json_hook*(e: PlotOrder): JsonNode = ($e).to_json
 
 
 type PlotColumnOrder* = (string, PlotOrder)
