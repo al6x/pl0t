@@ -87,10 +87,10 @@ proc to_json_hook*(o: PlotTableColumn): JsonNode =
       result[k] = v.to_json
 
 
-type TableOptions*[Row] = object
+type TableOptions* = object
   columns*:       Option[seq[PlotTableColumn]]
   alter_columns*: Option[seq[PlotTableColumn]] # Sometimes it's easier to override only some columns
-  rows*:          seq[Row]
+  # rows*:          seq[Row]
   title*:         Option[string]
 
   order*:         Option[seq[PlotColumnOrder]]
@@ -130,38 +130,43 @@ proc build_plot_url(path: string): string =
 
 
 # Table.plot ---------------------------------------------------------------------------------------
-proc plot*(path: string, table: TableOptions): void =
-  let url        = build_plot_url path
-  let table_json = table.to_json.pretty
+proc plot*[Row](path: string, rows: seq[Row], options: TableOptions): void =
+  let url   = build_plot_url path
+  var jdata = options.to_json
+  jdata["rows"] = rows.to_json
 
   let client = new_http_client()
   defer: client.close
-  discard client.post_content(url, table_json)
+  discard client.post_content(url, jdata.pretty)
 
-proc plot*[Row](
-  path:          string,
-  columns:       Option[seq[PlotTableColumn]] = seq[PlotTableColumn].none,
-  alter_columns: Option[seq[PlotTableColumn]] = seq[PlotTableColumn].none,
-  rows:          seq[Row] = Row.none,
-  title:         Option[string] = string.none,
+proc plot*[Row](path: string, rows: seq[Row], options: JsonNode): void =
+  plot(path, rows, options.json_to(TableOptions))
 
-  order:         Option[seq[PlotColumnOrder]] = seq[PlotColumnOrder].none,
-  query:         Option[string] = string.none,  # default = "" filter query
 
-  id:            Option[string] = string.none,
-  selectable:    Option[bool] = bool.none, # default = true
-  sortable:      Option[bool] = bool.none, # default = true
-  toolbar:       Option[bool] = bool.none, # default = true
-  warnings:      Option[bool] = bool.none, # default = true
+# proc plot*[Row](
+#   path:          string,
+#   columns:       Option[seq[PlotTableColumn]] = seq[PlotTableColumn].none,
+#   alter_columns: Option[seq[PlotTableColumn]] = seq[PlotTableColumn].none,
+#   rows:          seq[Row] = Row.none,
+#   title:         Option[string] = string.none,
 
-  wsort:         Option[bool] = bool.none # default = true, weighted sorting see `wsortTable` for details,
-                                       # use false for ordinary sorging
-): void =
-  let table = TableOptions[Row](
-    columns: columns, alter_columns: alter_columns, rows: rows, title: title, order: order, query: query, id: id,
-    selectable: selectable, sortable: sortable, toolbar: toolbar, warnings: warnings, wsort: wsort
-  )
-  plot path, table
+#   order:         Option[seq[PlotColumnOrder]] = seq[PlotColumnOrder].none,
+#   query:         Option[string] = string.none,  # default = "" filter query
+
+#   id:            Option[string] = string.none,
+#   selectable:    Option[bool] = bool.none, # default = true
+#   sortable:      Option[bool] = bool.none, # default = true
+#   toolbar:       Option[bool] = bool.none, # default = true
+#   warnings:      Option[bool] = bool.none, # default = true
+
+#   wsort:         Option[bool] = bool.none # default = true, weighted sorting see `wsortTable` for details,
+#                                        # use false for ordinary sorging
+# ): void =
+#   let table = TableOptions[Row](
+#     columns: columns, alter_columns: alter_columns, rows: rows, title: title, order: order, query: query, id: id,
+#     selectable: selectable, sortable: sortable, toolbar: toolbar, warnings: warnings, wsort: wsort
+#   )
+#   plot path, table
 
 
 # del_plot -----------------------------------------------------------------------------------------
@@ -170,17 +175,3 @@ proc del_plot*(path: string): void =
   let client = new_http_client()
   defer: client.close
   discard client.delete(url)
-
-
-# --------------------------------------------------------------------------------------------------
-# Test ---------------------------------------------------------------------------------------------
-# --------------------------------------------------------------------------------------------------
-if is_main_module:
-  plot_base_url  = "http://al6x.plot.com"
-  plot_api_token = "stub"
-
-  let rows = @[
-    (name: "Jim",  age: 30),
-    (name: "Kate", age: 27)
-  ]
-  plot "/nim_test/table.json", rows = rows
