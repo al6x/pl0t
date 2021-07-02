@@ -19,7 +19,7 @@ export interface NumberFormatOptions {
   type:   "number"
   align?: Align
   small?: boolean // small font size, false by default
-  round?: number // default 2
+  round?: number  // default 2
 }
 
 export interface LineFormatOptions {
