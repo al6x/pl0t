@@ -35,6 +35,14 @@ converter to_plot_format_type*(s: string): PlotFormatType = parse_enum[PlotForma
 func to_json_hook*(e: PlotFormatType): JsonNode = ($e).to_json
 
 
+type PlotLineScale* {.pure.} = enum
+  linear_e  = "linear",
+  log_e     = "log"
+
+converter to_plot_line_scale*(s: string): PlotLineScale = parse_enum[PlotLineScale](s)
+func to_json_hook*(e: PlotLineScale): JsonNode = ($e).to_json
+
+
 type FormatOptions* = object
   align*: Option[PlotAlign]
   small*: Option[bool] # small font size, false by default
@@ -47,9 +55,15 @@ type FormatOptions* = object
     round*: Option[int] # default = 2
 
   of "line":
-    max*:   Option[float] # custom max value for line length, if not provided max value will be calculated
-    color*: Option[string]
-    ticks*: Option[seq[float]]
+    max*:      Option[float] # custom max value for line length, if not provided max value will be calculated
+    color*:    Option[string]
+    ticks*:    Option[seq[float]]
+    domain*:   Option[array[0..1, int]] # domain, min/max values, if not provided will be calculated
+    scale*:    Option[PlotLineScale]    # default = linear
+    log_unit*: Option[bool] # default = false
+    # "log_unit" could be used only with log scale, it replaces values in [0..1] range with 1, usefull to
+    # display quantity of some units, like money. When we would like to round small values with less than
+    # $1 cash, to avoid log being negative.
 
   of "boolean":
     `true`*:  Option[string]
@@ -90,7 +104,6 @@ proc to_json_hook*(o: PlotTableColumn): JsonNode =
 type TableOptions* = object
   columns*:       Option[seq[PlotTableColumn]]
   alter_columns*: Option[seq[PlotTableColumn]] # Sometimes it's easier to override only some columns
-  # rows*:          seq[Row]
   title*:         Option[string]
 
   order*:         Option[seq[PlotColumnOrder]]
@@ -133,7 +146,8 @@ proc build_plot_url(path: string): string =
 proc plot*[Row](path: string, rows: seq[Row], options: TableOptions): void =
   let url   = build_plot_url path
   var jdata = options.to_json
-  jdata["rows"] = rows.to_json
+  jdata["version"] = 1.to_json
+  jdata["rows"]    = rows.to_json
 
   let client = new_http_client()
   defer: client.close
