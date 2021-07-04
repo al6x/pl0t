@@ -1,4 +1,4 @@
-import pl0t, pl0t/jsonm
+import ../pl0t, ./jsonm
 
 plot_base_url  = "http://al6x.plot.com"
 plot_api_token = "stub"

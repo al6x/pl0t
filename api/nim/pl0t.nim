@@ -1,4 +1,4 @@
-import std/strutils, std/options, std/httpclient, std/strformat, std/sugar, std/os
+import std/strutils, std/options, std/httpclient, std/strformat, std/sugar, std/os, std/tables
 import std/json, std/jsonutils
 
 # --------------------------------------------------------------------------------------------------
@@ -82,6 +82,8 @@ func to_json_hook*(e: PlotOrder): JsonNode = ($e).to_json
 
 type PlotColumnOrder* = (string, PlotOrder)
 
+func to_json_hook*(order: PlotColumnOrder): JsonNode = [order[0], $(order[1])].to_json
+
 
 type PlotTableColumn* = object
   id*:      string
@@ -101,6 +103,9 @@ proc to_json_hook*(o: PlotTableColumn): JsonNode =
       result[k] = v.to_json
 
 
+# type PlotTableWeights = Table[string, float]
+
+
 type TableOptions* = object
   columns*:       Option[seq[PlotTableColumn]]
   alter_columns*: Option[seq[PlotTableColumn]] # Sometimes it's easier to override only some columns
@@ -108,6 +113,8 @@ type TableOptions* = object
 
   order*:         Option[seq[PlotColumnOrder]]
   query*:         Option[string]  # default = "" filter query
+  wsort_weights*: Option[Table[string, float]] # Used only if wsort is enabled, column weights for
+  # weighted sorting, by default each column has 1.0 weight
 
   id*:            Option[string]
   selectable*:    Option[bool] # default = true
@@ -143,10 +150,10 @@ proc build_plot_url(path: string): string =
 
 
 # Table.plot ---------------------------------------------------------------------------------------
-proc plot*[Row](path: string, rows: seq[Row], options: TableOptions): void =
+proc plot*[Row](path: string, rows: seq[Row], options: TableOptions = TableOptions()): void =
   let url   = build_plot_url path
   var jdata = options.to_json
-  jdata["version"] = 1.to_json
+  jdata["version"] = 0.1.to_json
   jdata["rows"]    = rows.to_json
 
   let client = new_http_client()

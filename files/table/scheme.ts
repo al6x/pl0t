@@ -58,24 +58,28 @@ export type FormatOptions =
 // Table -------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
 export interface TableOptions {
-  version?:       1        // Table Version
+  version:        0.1      // Table Version
   columns?:       Column[]
   alter_columns?: Column[] // Sometimes it's easier to override only some columns
   rows:           (Record<string, unknown>|unknown[])[]
 
-  title?:      string
+  title?:       string
+  description?: string
 
-  order?:      ColumnOrder[] // max 3 columns
+  order?:         ColumnOrder[] // max 3 columns
+  // default = false, weighted sorting see `wsortTable` for details,
+  // use false for ordinary sorging
+  wsort?:         boolean
+  // Used only if wsort is enabled, column weights for weighted sorting, by default each column has 1.0 weight
+  wsort_weights?: { [column_id: string]: number }
+
   query?:      string  // default = "" filter query
 
-  id?:         string
-  selectable?: boolean // default = true
-  sortable?:   boolean // default = true
-  toolbar?:    boolean // default = true
-  _i?:         boolean // default = false, show row indices
-
-  wsort?:      boolean // default = false, weighted sorting see `wsortTable` for details,
-                       // use false for ordinary sorging
+  id?:            string
+  selectable?:    boolean // default = true
+  sortable?:      boolean // default = true
+  show_controls?: boolean // default = true
+  _i?:            boolean // default = false, show row indices
 }
 
 export type ColumnOrder = [string, "asc" | "desc"]
