@@ -2,6 +2,7 @@ version     = "0.11"
 author      = "http://pl0t.com"
 description = "Plot and visualise data"
 license     = "Proprietary"
+skipFiles   = @["test.nim"]
 
 srcDir = "."
 
