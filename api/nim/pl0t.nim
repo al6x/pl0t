@@ -1,6 +1,13 @@
 import std/strutils, std/options, std/httpclient, std/strformat, std/sugar, std/os, std/tables
 import std/json, std/jsonutils
 
+
+# --------------------------------------------------------------------------------------------------
+# Support ------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
+template throw(message: string) = raise Exception.new_exception(message)
+
+
 # --------------------------------------------------------------------------------------------------
 # Schema -------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
@@ -85,6 +92,32 @@ type PlotColumnOrder* = (string, PlotOrder)
 func to_json_hook*(order: PlotColumnOrder): JsonNode = [order[0], $(order[1])].to_json
 
 
+type PlotFilterCondition* {.pure.} = enum
+  lte_e = "<=",
+  lt_e  = "<",
+  eq_e  = "=",
+  neq_e = "!=",
+  gt_e  = ">",
+  gte_e = ">=",
+  aeq_e = "~"
+
+converter to_plot_filter_condition*(s: string): PlotFilterCondition = parse_enum[PlotFilterCondition](s)
+func to_json_hook*(e: PlotFilterCondition): JsonNode = ($e).to_json
+
+
+type PlotColumnFilter* = (PlotFilterCondition, string)
+
+func to_json_hook*(filter: PlotColumnFilter): JsonNode = [$(filter[0]), filter[1]].to_json
+proc from_json_hook*(v: var PlotColumnFilter, json: JsonNode) =
+  let sv: string = case json[1].kind
+  of JString: json[1].str
+  of JInt:    $(json[1].num)
+  of JFloat:  $(json[1].fnum)
+  of JBool:   $(json[1].bval)
+  else:       throw fmt"unsupported value {json[1]}"
+  v = (json[0].get_str.to_plot_filter_condition, sv)
+
+
 type PlotTableColumn* = object
   id*:      string
   `type`*:  PlotDataType # also possible to use custom types for third party formatters
@@ -111,10 +144,11 @@ type TableOptions* = object
   alter_columns*: Option[seq[PlotTableColumn]] # Sometimes it's easier to override only some columns
   title*:         Option[string]
 
-  order*:         Option[seq[PlotColumnOrder]]
-  query*:         Option[string]  # default = "" filter query
-  wsort_weights*: Option[Table[string, float]] # Used only if wsort is enabled, column weights for
-  # weighted sorting, by default each column has 1.0 weight
+  sort*:         Option[seq[PlotColumnOrder]]
+  wsort*:        Option[Table[string, float]] # weighted sorting
+
+  filter*:         Option[string]  # default = "" filter query
+  column_filters*: Option[Table[string, PlotColumnFilter]] # column filters, column_id => condition
 
   id*:            Option[string]
   selectable*:    Option[bool] # default = true
@@ -122,15 +156,6 @@ type TableOptions* = object
   toolbar*:       Option[bool] # default = true
   warnings*:      Option[bool] # default = true
   # `_i`*:          Option[bool] # default = false, show row indices
-
-  wsort*:         Option[bool] # default = true, weighted sorting see `wsortTable` for details,
-                           # use false for ordinary sorging
-
-
-# --------------------------------------------------------------------------------------------------
-# Support ------------------------------------------------------------------------------------------
-# --------------------------------------------------------------------------------------------------
-template throw(message: string) = raise Exception.new_exception(message)
 
 
 # --------------------------------------------------------------------------------------------------
