@@ -65,7 +65,6 @@ type FormatOptions* = object
     max*:      Option[float] # custom max value for line length, if not provided max value will be calculated
     color*:    Option[string]
     ticks*:    Option[seq[float]]
-    domain*:   Option[array[0..1, int]] # domain, min/max values, if not provided will be calculated
     scale*:    Option[PlotLineScale]    # default = linear
     log_unit*: Option[bool] # default = false
     # "log_unit" could be used only with log scale, it replaces values in [0..1] range with 1, usefull to
@@ -124,7 +123,7 @@ type PlotTableColumn* = object
   title*:   Option[string] # same as id if not specified
   format*:  Option[FormatOptions] # by default same as type, also possible to use custom formatters
   width*:   Option[float] # default = 1, width as weight, not as pixels or percentages
-  min_max*: Option[(float, float)] # Min/max range for values, used for
+  domain*:  Option[(float, float)] # Min/max range for values, used for
                                   # better weighted sorting, see `wsortTable`
 
 proc to_json_hook*(o: PlotTableColumn): JsonNode =
