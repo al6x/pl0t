@@ -26,7 +26,6 @@ export interface LineFormatOptions {
   type:    "line"
   align?:  Align
   small?:  boolean // small font size, false by default
-  domain?: [number, number] // domain, min/max values, if not provided will be calculated
   color?:  string
   ticks?:  number[]
   scale?:  "linear" | "log" // default = linear
@@ -61,7 +60,7 @@ export interface TableOptions {
   version:        0.1      // Table Version
   columns?:       Column[]
   alter_columns?: Column[] // Sometimes it's easier to override only some columns
-  rows:           (Record<string, unknown>|unknown[])[]
+  rows:           (Row | unknown[])[] // Row could be Tidy Data or Array
 
   title?:       string
   description?: string
@@ -69,17 +68,18 @@ export interface TableOptions {
   sort?:          ColumnOrder[] // ordinary sorting, max 3 columns
   wsort?:         { [column_id: string]: number } // weighted sorting
 
-  filter?:         string  // default = "" filter query
-  column_filters?: { [column_id: string]: ColumnFilter } // column filters
+  filter?:  string  // default = "" filter query, matches for any column
+  filters?: { [column_id: string]: ColumnFilter } // column filters, match for specific column
 
   id?:            string
   selectable?:    boolean // default = true
   sortable?:      boolean // default = true
   show_controls?: boolean // default = true
-  _i?:            boolean // default = false, show row indices
 
   debug?:         boolean // default = false, used for debug
 }
+
+export type Row = Record<string, unknown>
 
 export type ColumnOrder = [string, "asc" | "desc"]
 
@@ -90,7 +90,9 @@ export interface Column {
   format?: FormatOptions // by default same as type, also possible to use custom formatters
   width?:  number        // default = 1, width as weight, not as pixels or percentages
 
-  min_max?: [number, number] // Min/max range for values, used for better weighted sorting, see `wsortTable`
+  // domain, min/max values, for "number" columns only, if not provided will be calculated. Used for better weighted
+  // sorting and line format.
+  domain?: [number, number]
 }
 
 export type  FilterCondition =   "<=" | "<" | "=" | "!=" | ">" | ">=" | "~"

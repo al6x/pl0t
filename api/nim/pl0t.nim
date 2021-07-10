@@ -143,11 +143,11 @@ type TableOptions* = object
   alter_columns*: Option[seq[PlotTableColumn]] # Sometimes it's easier to override only some columns
   title*:         Option[string]
 
-  sort*:         Option[seq[PlotColumnOrder]]
-  wsort*:        Option[Table[string, float]] # weighted sorting
+  sort*:          Option[seq[PlotColumnOrder]]
+  wsort*:         Option[Table[string, float]] # weighted sorting
 
-  filter*:         Option[string]  # default = "" filter query
-  column_filters*: Option[Table[string, PlotColumnFilter]] # column filters, column_id => condition
+  filter*:        Option[string]  # default = "" filter query
+  filters*:       Option[Table[string, PlotColumnFilter]] # column filters, column_id => condition
 
   id*:            Option[string]
   selectable*:    Option[bool] # default = true
@@ -185,7 +185,9 @@ proc plot*[Row](path: string, rows: seq[Row], options: TableOptions = TableOptio
   discard client.post_content(url, jdata.pretty)
 
 proc plot*[Row](path: string, rows: seq[Row], options: JsonNode): void =
-  plot(path, rows, options.json_to(TableOptions))
+  var parsed: TableOptions
+  from_json(parsed, options, Joptions(allow_extra_keys: false))
+  plot(path, rows, parsed)
 
 
 # del_plot -----------------------------------------------------------------------------------------
