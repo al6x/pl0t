@@ -152,8 +152,7 @@ type TableOptions* = object
   id*:            Option[string]
   selectable*:    Option[bool] # default = true
   sortable*:      Option[bool] # default = true
-  toolbar*:       Option[bool] # default = true
-  warnings*:      Option[bool] # default = true
+  show_controls*: Option[bool] # default = true
   # `_i`*:          Option[bool] # default = false, show row indices
 
 
@@ -196,3 +195,19 @@ proc del_plot*(path: string): void =
   let client = new_http_client()
   defer: client.close
   discard client.delete(url)
+
+
+# --------------------------------------------------------------------------------------------------
+# Notes --------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
+#
+# TypeScript advantages compared to Nim for DSL and Schema Definition
+#
+# - In TS Data = Language = Types, 1 to 1 match, in Nim it is not.
+# - In TS no need for Option. In Nim .some and .none needed.
+# - In TS Discriminated Union for Formatter Options. In Nim less convenient Variant Object
+# - In TS data autocasted to correct types. In Nim does not, and converters won't help as they don't
+#   work with nested objects.
+# - In TS enums are Literal Types. In Nim Enums are not clean so you had to use prefixes pr_enum_name
+#   or Type.enum_name.
+# - In TS there's no reserved words for keys. In Nim `type` and other can't be used as keys.
