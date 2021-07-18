@@ -1,13 +1,8 @@
-// -------------------------------------------------------------------------------------------------
 // Types -------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
 export type  Type  =  "string" | "number" | "boolean" | "unknown"
-export const Type_ = ["string",  "number",  "boolean",  "unknown"]
 
 
-// -------------------------------------------------------------------------------------------------
 // Formats -----------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
 export type Align = "left" | "center" | "right"
 export interface StringFormatOptions {
   type: "string"
@@ -53,14 +48,13 @@ export type FormatOptions =
   StringFormatOptions | NumberFormatOptions | BooleanFormatOptions | LineFormatOptions | UnknownFormatOptions
 
 
-// -------------------------------------------------------------------------------------------------
 // Table -------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
-export interface TableOptions {
-  version:        0.1      // Table Version
+export interface Table {
   columns?:       Column[]
   alter_columns?: Column[] // Sometimes it's easier to override only some columns
-  data:           (Row | unknown[])[] // Row could be Tidy Data or Array
+
+  // data?:          Data     // Row could be Tidy Data or Array
+  // data_url?:      string   // Row could be Tidy Data or Array
 
   title?:       string
   description?: string
@@ -71,6 +65,8 @@ export interface TableOptions {
   filter?:  string  // default = "" filter query, matches for any column
   filters?: { [column_id: string]: ColumnFilter } // column filters, match for specific column
 
+  selected?:      number[] // Numbers of selected rows, starting from 0
+
   id?:            string
   selectable?:    boolean // default = true
   sortable?:      boolean // default = true
@@ -79,10 +75,8 @@ export interface TableOptions {
   debug?:         boolean // default = false, used for debug
 }
 
-export type Row = Record<string, unknown>
 
-export type ColumnOrder = [string, "asc" | "desc"]
-
+// Column ------------------------------------------------------------------------------------------
 export interface Column {
   id:      string
   type:    Type          // also possible to use custom types for third party formatters
@@ -95,7 +89,12 @@ export interface Column {
   domain?: [number, number]
 }
 
+
+// ColumnOrder -------------------------------------------------------------------------------------
+export type ColumnOrder = [string, "asc" | "desc"]
+
+
+// ColumnFilter ------------------------------------------------------------------------------------
 export type  FilterCondition =   "<=" | "<" | "=" | "!=" | ">" | ">=" | "~"
-export const FilterCondition_ = ["<=",  "<",  "=",  "!=",  ">",  ">=",  "~"]
 
 export type ColumnFilter = [FilterCondition, number | string | boolean]
