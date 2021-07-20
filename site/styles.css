@@ -12,6 +12,7 @@
 }
 .markdown > h1 > strong {
   font-weight: bold;
+  color: #4F46E5;
 }
 
 /* .markdown > h1:nth-of-type(2) {
