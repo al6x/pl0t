@@ -56,7 +56,7 @@ proc toJoImpl(x: NimNode): NimNode {.compileTime.} =
   else:
     result = newCall(bindSym("to_json", brOpen), x)
 
-macro jo*(v: untyped): JsonNode =
+macro `%`*(v: untyped): JsonNode =
   ## Convert an expression to a JsonNode directly, without having to specify
   ## `%` for every element.
   toJoImpl(v)

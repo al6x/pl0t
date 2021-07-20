@@ -1,5 +1,3 @@
-app: [block, 0.1]
-
 table:
   columns: [
     { id: name,     title: Name,   type: string },

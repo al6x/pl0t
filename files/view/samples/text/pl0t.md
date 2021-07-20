@@ -1,12 +1,21 @@
-# Plot and **See the Data**
+# PL0T and **See the Data**
 
 We, humans, have powerful graphical processor in our brain. Let's use it to see the data.
 
 # Demos
 
 Table:
-  [Units](http://files.pl0t.com/samples/table/units.yml:view),
-  [Countries](http://files.pl0t.com/samples/table/countries.yml:view)
+  [Units](http://files.pl0t.com/view/samples/table/units.yml:view),
+  [CSV](http://files.pl0t.com/view/samples/table/units.csv:view),
+  [Countries](http://files.pl0t.com/view/samples/table/countries.yml:view)
+
+Chart:
+  [Bar](http://files.pl0t.com/view/samples/chart/bar.yml:view)
+
+Text:
+  [Markdown with Code and Math](http://files.pl0t.com/view/samples/text/text.md:view),
+  [This page](http://files.pl0t.com/view/samples/text/pl0t.md:view)
+
 
 # How to use
 
@@ -18,7 +27,7 @@ Table:
 
     http://pl0t.com/api_tokens
 
-3 Create sample table to ensure verything works as expected.
+3 Create sample text to ensure verything works as expected.
 Replace `your-subdomain` and `your-api-token` with actual values
 
     curl \
@@ -27,19 +36,24 @@ Replace `your-subdomain` and `your-api-token` with actual values
     --data "Hello **World**" \
     http://your-subdomain.pl0t.com/hello_world.md
 
-4 Open table in Browser, replace `your-subdomain` in URL with yours
+4 Open it in Browser, replace `your-subdomain` in URL with yours
 
     http://your-subdomain.pl0t.com/hello_world.md:view
 
-5 Use API in you language.
+5 Hint, optionally, you may set environment variable `$plot_api_token` to store your API token.
 
-- [TypeScript Scheme](https://github.com/al6x/pl0t/blob/main/files/view/schema), full API going to
-  be available a bit later
-- [Nim API](https://github.com/al6x/pl0t/tree/main/api)
+6 If you have question or need help feel free to **[contact](https://github.com/al6x/pl0t/issues)**
 
-6 Hint, optionally, you may set environment variable `$plot_api_token` to store your API token.
+# API
 
-7 If you have question or need help feel free to **[contact](https://github.com/al6x/pl0t/issues)**
+**TypeScript API** going to be available a bit later, currently the
+[TypeScript Scheme](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts)
+available.
+
+**[Nim API](https://github.com/al6x/pl0t/tree/main/api)** docs going to be available later,
+use [TypeScript Scheme](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts) as reference
+for now.
+
 
 # License
 

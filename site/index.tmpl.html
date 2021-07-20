@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>pl0t</title>
+
+  <link rel="icon" type="image/png" href="http://files.pl0t.com/view/favicon.ico">
+
+  <script>
+    window.env = {
+      base_url: "http://files.pl0t.com/view"
+    }
+  </script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view/build/bundle.css">
+  <script src="http://files.pl0t.com/view/build/bundle.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<script id="text" type="markdown">
+{text}
+</script>
+
+<script type="module">
+  const text_block = {
+    text: document.getElementById('text').innerHTML
+  }
+  window.plot_api.run({ data: text_block })
+</script>
+
+</body>
+</html>
