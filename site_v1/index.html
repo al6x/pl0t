@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>pl0t</title>
+
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <link rel="stylesheet" href="/build/bundle.css">
+  <script defer src="/script.js"></script>
+  <!-- <script defer src="/csslivereload.js"></script> -->
+</head>
+<body class="bg-gray-100">
+  <div class="mx-auto max-w-2xl py-10 px-7 space-y-8 bg-white">
+    <div class="text-4xl text-center">Plot and visualise data</div>
+
+    <div class="space-y-4">
+      <div class="text-2xl ">Demos</div>
+
+      <p>
+        <b>Table</b>:
+        <a class="font-bold text-blue-700" href="http://files.pl0t.com/table01/samples/units.json:table01">Units</a>,
+        <a class="font-bold text-blue-700" href="http://files.pl0t.com/table01/samples/countries.json:table01">Countries</a>
+      </p>
+    </div>
+
+    <div class="border bg-gray-300"></div>
+
+    <div class="space-y-4">
+      <h class="text-2xl">How to use</h>
+
+      <p>
+        1 <a class="font-bold text-blue-700" href="/login">Login</a> with Github,
+        you will be redirected to your subdomain
+      </p>
+      <pre class="text-xs ml-4 text-gray-500">http://<b class="text-blue-700">your-subdomain</b>.pl0t.com</pre>
+
+      <p>2 <a class="font-bold text-blue-700" href="/api_tokens">Get</a> API token</p>
+      <pre class="text-xs ml-4 text-gray-500">http://pl0t.com/api_tokens</pre>
+
+      <p>3 Create example table, replace subdomain and API token with yours</p>
+      <pre class="text-xs ml-4 text-gray-500">curl \
+--request POST \
+--header "api_token: <b class="text-blue-700">your-api-token</b>" \
+--data '{"rows":[[11, 12], [21, 22]]}' \
+http://<b class="text-blue-700">your-subdomain</b>.pl0t.com/sample_table.json</pre>
+
+      <p>4 Open table in Browser, replace subdomain in URL with yours</p>
+      <pre class="text-xs ml-4 text-gray-500">http://<b class="text-blue-700">your-subdomain</b>.pl0t.com/sample_table.json:table</pre>
+
+      <p>
+        5 Use API in you language.
+
+        <div class="ml-4 space-y-3">
+          <div>
+            - <a class="font-bold text-blue-700" href="https://github.com/al6x/pl0t/blob/main/files/table/scheme.ts">
+              TypeScript Scheme
+            </a> full API going to be available a bit later
+          </div>
+          <div>
+            - <a class="font-bold text-blue-700" href="https://github.com/al6x/pl0t/tree/main/api">
+              Nim API
+            </a>
+          </div>
+        </div>
+      </p>
+
+      <p>
+        6 If you have question or need help feel free to
+        <a class="font-bold text-blue-700" href="https://github.com/al6x/pl0t/issues">contact</a>
+      </p>
+    </div>
+
+    <div class="border bg-gray-300"></div>
+
+    <div class="space-y-4">
+      <a class="text-2xl">License</a>
+
+      <p>
+        <b>Free</b> for personal usage, non-commercial organisations and
+        businesses with annual sales less than $1 million.
+      </p>
+
+      <p>
+        For commercial businesses with annual sales greather than $1 million, the first month
+        is free, after that it's $5 per developer per month.
+      </p>
+
+      <p>
+        <a class="underline" href="https://github.com/al6x/pl0t/tree/main/license">Full license</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -7,15 +7,18 @@
   <title>pl0t</title>
 
   <link rel="icon" type="image/png" href="http://files.pl0t.com/view/favicon.ico">
-  <link rel="stylesheet" href="http://files.pl0t.com/view/build/bundle.css">
 
   <script>
     window.env = {
       base_url: "http://files.pl0t.com/view"
     }
   </script>
-  <script defer src="http://files.pl0t.com/view/build/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view/build/bundle.css">
+  <script src="http://files.pl0t.com/view/build/bundle.js"></script>
 </head>
 <body>
+  <script>
+    window.plot_api.run()
+  </script>
 </body>
 </html>

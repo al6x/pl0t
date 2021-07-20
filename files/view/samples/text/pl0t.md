@@ -1,18 +1,18 @@
-# Plot and View the Data
+# Plot and **See the Data**
 
-[TODO] pictures
+We, humans, have powerful graphical processor in our brain. Let's use it to see the data.
 
 # Demos
 
 Table:
-  [Units](http://files.pl0t.com/samples/table/units.yml:view)
+  [Units](http://files.pl0t.com/samples/table/units.yml:view),
   [Countries](http://files.pl0t.com/samples/table/countries.yml:view)
 
 # How to use
 
 1 **[Login](http://pl0t.com/login)** with Github, you will be redirected to your subdomain
 
-    your-subdomain.pl0t.com
+    http://your-subdomain.pl0t.com
 
 2 **[Get](http://pl0t.com/api_tokens)** API token
 
@@ -24,17 +24,12 @@ Replace `your-subdomain` and `your-api-token` with actual values
     curl \
     --request POST \
     --header "api_token: your-api-token" \
-    --data \
-    "
-    app: [block, 0.1]
-    table: {}
-    data: [[1, 2], [3, 4]]
-    " \
-    http://your-subdomain.pl0t.com/sample_table.yml
+    --data "Hello **World**" \
+    http://your-subdomain.pl0t.com/hello_world.md
 
 4 Open table in Browser, replace `your-subdomain` in URL with yours
 
-    http://your-subdomain.pl0t.com/sample_table.yml:view
+    http://your-subdomain.pl0t.com/hello_world.md:view
 
 5 Use API in you language.
 
@@ -54,5 +49,3 @@ than $1 million.
 For commercial businesses with annual sales greather than $1 million, the first month is free,
 after that it's $5 per developer per month,
 [full license](https://github.com/al6x/pl0t/tree/main/license).
-
-Made by [al6x](http://al6x.com)

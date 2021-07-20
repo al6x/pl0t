@@ -15,9 +15,9 @@ export interface Page {
 }
 
 export type Single = Block & {
-  app:     ['block', 0.1]
-  style?:  Style
-  css_url?:     string // Apply custom CSS
+  app:      ['block', 0.1]
+  style?:   Style
+  css_url?: string // Apply custom CSS
 }
 
 export interface Dash {

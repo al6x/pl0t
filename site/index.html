@@ -6,91 +6,80 @@
 
   <title>pl0t</title>
 
-  <link rel="icon" type="image/png" href="/favicon.ico">
-  <link rel="stylesheet" href="/build/bundle.css">
-  <script defer src="/script.js"></script>
-  <!-- <script defer src="/csslivereload.js"></script> -->
+  <link rel="icon" type="image/png" href="http://files.pl0t.com/view/favicon.ico">
+
+  <script>
+    window.env = {
+      base_url: "http://files.pl0t.com/view"
+    }
+  </script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view/build/bundle.css">
+  <script src="http://files.pl0t.com/view/build/bundle.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-100">
-  <div class="mx-auto max-w-2xl py-10 px-7 space-y-8 bg-white">
-    <div class="text-4xl text-center">Plot and visualise data</div>
+<body>
 
-    <div class="space-y-4">
-      <div class="text-2xl ">Demos</div>
+<script id="text" type="markdown">
+# Plot and **See the Data**
 
-      <p>
-        <b>Table</b>:
-        <a class="font-bold text-blue-700" href="http://files.pl0t.com/table01/samples/units.json:table01">Units</a>,
-        <a class="font-bold text-blue-700" href="http://files.pl0t.com/table01/samples/countries.json:table01">Countries</a>
-      </p>
-    </div>
+We, humans, have powerful graphical processor in our brain. Let's use it to see the data.
 
-    <div class="border bg-gray-300"></div>
+# Demos
 
-    <div class="space-y-4">
-      <h class="text-2xl">How to use</h>
+Table:
+  [Units](http://files.pl0t.com/samples/table/units.yml:view),
+  [Countries](http://files.pl0t.com/samples/table/countries.yml:view)
 
-      <p>
-        1 <a class="font-bold text-blue-700" href="/login">Login</a> with Github,
-        you will be redirected to your subdomain
-      </p>
-      <pre class="text-xs ml-4 text-gray-500">http://<b class="text-blue-700">your-subdomain</b>.pl0t.com</pre>
+# How to use
 
-      <p>2 <a class="font-bold text-blue-700" href="/api_tokens">Get</a> API token</p>
-      <pre class="text-xs ml-4 text-gray-500">http://pl0t.com/api_tokens</pre>
+1 **[Login](http://pl0t.com/login)** with Github, you will be redirected to your subdomain
 
-      <p>3 Create example table, replace subdomain and API token with yours</p>
-      <pre class="text-xs ml-4 text-gray-500">curl \
---request POST \
---header "api_token: <b class="text-blue-700">your-api-token</b>" \
---data '{"rows":[[11, 12], [21, 22]]}' \
-http://<b class="text-blue-700">your-subdomain</b>.pl0t.com/sample_table.json</pre>
+    http://your-subdomain.pl0t.com
 
-      <p>4 Open table in Browser, replace subdomain in URL with yours</p>
-      <pre class="text-xs ml-4 text-gray-500">http://<b class="text-blue-700">your-subdomain</b>.pl0t.com/sample_table.json:table</pre>
+2 **[Get](http://pl0t.com/api_tokens)** API token
 
-      <p>
-        5 Use API in you language.
+    http://pl0t.com/api_tokens
 
-        <div class="ml-4 space-y-3">
-          <div>
-            - <a class="font-bold text-blue-700" href="https://github.com/al6x/pl0t/blob/main/files/table/scheme.ts">
-              TypeScript Scheme
-            </a> full API going to be available a bit later
-          </div>
-          <div>
-            - <a class="font-bold text-blue-700" href="https://github.com/al6x/pl0t/tree/main/api">
-              Nim API
-            </a>
-          </div>
-        </div>
-      </p>
+3 Create sample text to ensure verything works as expected.
+Replace `your-subdomain` and `your-api-token` with actual values
 
-      <p>
-        6 If you have question or need help feel free to
-        <a class="font-bold text-blue-700" href="https://github.com/al6x/pl0t/issues">contact</a>
-      </p>
-    </div>
+    curl \
+    --request POST \
+    --header "api_token: your-api-token" \
+    --data "Hello **World**" \
+    http://your-subdomain.pl0t.com/hello_world.md
 
-    <div class="border bg-gray-300"></div>
+4 Open it in Browser, replace `your-subdomain` in URL with yours
 
-    <div class="space-y-4">
-      <a class="text-2xl">License</a>
+    http://your-subdomain.pl0t.com/hello_world.md:view
 
-      <p>
-        <b>Free</b> for personal usage, non-commercial organisations and
-        businesses with annual sales less than $1 million.
-      </p>
+5 Use API in you language.
 
-      <p>
-        For commercial businesses with annual sales greather than $1 million, the first month
-        is free, after that it's $5 per developer per month.
-      </p>
+- [TypeScript Scheme](https://github.com/al6x/pl0t/blob/main/files/view/schema), full API going to
+  be available a bit later
+- [Nim API](https://github.com/al6x/pl0t/tree/main/api)
 
-      <p>
-        <a class="underline" href="https://github.com/al6x/pl0t/tree/main/license">Full license</a>
-      </p>
-    </div>
-  </div>
+6 Hint, optionally, you may set environment variable `$plot_api_token` to store your API token.
+
+7 If you have question or need help feel free to **[contact](https://github.com/al6x/pl0t/issues)**
+
+# License
+
+**Free** for personal usage, non-commercial organisations and businesses with annual sales less
+than $1 million.
+
+For commercial businesses with annual sales greather than $1 million, the first month is free,
+after that it's $5 per developer per month,
+[full license](https://github.com/al6x/pl0t/tree/main/license).
+</script>
+
+<script type="module">
+  const text_block = {
+    text: document.getElementById('text').innerHTML
+  }
+  window.plot_api.run({ data: text_block })
+</script>
+
 </body>
 </html>

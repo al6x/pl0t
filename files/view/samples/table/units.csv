@@ -1,0 +1,4 @@
+name,family,age,hp,is_alive
+Jim,Raynor,30,250,true
+Angus,Mengsk,50,100,false
+Amon,,,,true
