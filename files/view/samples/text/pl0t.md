@@ -58,9 +58,12 @@ examples above as a reference.
 
 # License
 
-**Free** for personal usage, non-commercial organisations and commercial businesses with annual
+**FREE** for personal usage, non-commercial organisations and commercial businesses with annual
 sales less than $1 million.
 
 For commercial businesses with annual sales greather than $1 million, the first month is free,
-after that it's $5 per developer per month,
+after that it's $5 per developer per month.
+
+If you use free version please don't hide or remove the **PL0T** brand at the bottom of the page.
+
 [full license](https://github.com/al6x/pl0t/tree/main/license).

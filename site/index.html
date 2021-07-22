@@ -5,22 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <title>pl0t</title>
-
   <link rel="icon" type="image/png" href="http://files.pl0t.com/view/favicon.ico">
 
+  <!-- PL0T begin -->
   <script>
     window.env = {
       base_url: "http://files.pl0t.com/view"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view/build/bundle.4a5d60.css">
-  <script src="http://files.pl0t.com/view/build/bundle.f1e1f6.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view/build/bundle.b2d12b.css">
+  <script src="http://files.pl0t.com/view/build/bundle.d20b77.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => window.plot_api.run())
+  </script>
+  <!-- PL0T end -->
 
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<script id="text" type="markdown">
+<!-- PL0T data, specify 'json', 'yml' or 'md' formats in the `type` attribute -->
+<script id="data" type="md">
 # *PL0T* and **See the Data**
 
 We have powerful GPU in our brain, let's use it.
@@ -81,19 +86,15 @@ examples above as a reference.
 
 # License
 
-**Free** for personal usage, non-commercial organisations and commercial businesses with annual
+**FREE** for personal usage, non-commercial organisations and commercial businesses with annual
 sales less than $1 million.
 
 For commercial businesses with annual sales greather than $1 million, the first month is free,
-after that it's $5 per developer per month,
-[full license](https://github.com/al6x/pl0t/tree/main/license).
-</script>
+after that it's $5 per developer per month.
 
-<script type="module">
-  const text_block = {
-    text: document.getElementById('text').innerHTML
-  }
-  window.plot_api.run({ data: text_block })
+If you use free version please don't hide or remove the **PL0T** brand at the bottom of the page.
+
+[full license](https://github.com/al6x/pl0t/tree/main/license).
 </script>
 
 </body>

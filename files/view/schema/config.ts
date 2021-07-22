@@ -51,8 +51,10 @@ export const plot_config: PlotConfig = {
   parsers: {},
 
   blocks_for_file_extensions: {
-    md:   'text',
-    text: 'text'
+    md:       'text',
+    markdown: 'text',
+    text:     'text',
+    txt:      'text'
   },
 
   blocks: {},
