@@ -12,10 +12,10 @@ export interface PlotConfig {
   blocks_for_file_extensions: { [extension: string]: string }
 
   // Blocks available, as Svelte components, blocks could be used inside apps.
-  blocks: { [block_name: string]: { default: any, definition: BlockDefinition<any> } }
+  blocks: { [block_name: string]: { default: any, definition: BlockDefinition<unknown> } }
 
   // Apps available, as Svelte components, apps can have blocks.
-  apps: { [block_name: string]: { default: any, definition: BlockDefinition<any> } }
+  apps: { [block_name: string]: { default: any, definition: BlockDefinition<unknown> } }
 }
 
 export interface BlockExt extends BaseBlock {
@@ -40,8 +40,7 @@ export interface AppImplProps {
 
 export type RawData = object | any[] | string | number | boolean
 export interface BlockDefinition<T> {
-  match:      (data: RawData) => boolean
-  normalize?: (data: RawData) => T
+  match_and_normalize: (data: RawData) => T | undefined
 }
 
 export const plot_config: PlotConfig = {

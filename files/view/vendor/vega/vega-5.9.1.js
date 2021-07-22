@@ -13532,7 +13532,7 @@
   function transformItem(item) {
     return translate(item.x || 0, item.y || 0)
       + (item.angle ? ' ' + rotate(item.angle) : '')
-      + (item.scaleX || item.scaleY ? ' ' + scale$1(item.scaleX || 1, item.scaleY || 1) : '');   
+      + (item.scaleX || item.scaleY ? ' ' + scale$1(item.scaleX || 1, item.scaleY || 1) : '');
   }
 
   function markItemPath(type, shape, isect) {
