@@ -1,51 +1,66 @@
 // Types -------------------------------------------------------------------------------------------
-export type  Type  =  "string" | "number" | "boolean" | "unknown"
+export type Type =
+  'string' | 'number' | 'boolean' | 'unknown' |
+  'image' | 'link'
 
 
 // Formats -----------------------------------------------------------------------------------------
-export type Align = "left" | "center" | "right"
+export type Align = 'left' | 'center' | 'right'
 export interface StringFormatOptions {
-  type: "string"
+  type: 'string'
   align?: Align
   small?: boolean // small font size, false by default
+  wrap?:  boolean // wrap on white space, false by default
+  break?: string  // force string breaks
 }
 
 export interface NumberFormatOptions {
-  type:   "number"
+  type:   'number'
   align?: Align
   small?: boolean // small font size, false by default
   round?: number  // default 2
 }
 
 export interface LineFormatOptions {
-  type:    "line"
+  type:    'line'
   align?:  Align
   small?:  boolean // small font size, false by default
   color?:  string
   ticks?:  number[]
-  scale?:  "linear" | "log" // default = linear
+  scale?:  'linear' | 'log' // default = linear
 
-  // "log_unit" could be used with log scale only, it replaces values in [0..1] range with 1, usefull to
+  // 'log_unit' could be used with log scale only, it replaces values in [0..1] range with 1, usefull to
   // display quantity of some units, like money. When we would like to round small values with less than
   // $1 cash, to avoid log being negative.
-  log_unit?: boolean // default = false
+  // If number used, the value will be multiplied by this number before flooring to 1.
+  log_unit?: boolean | number // default = false
 }
 
 export interface BooleanFormatOptions {
-  type:   "boolean"
-  align?: Align
+  type:   'boolean'
+  // align?: Align
   true?:  string
   false?: string
 }
 
 export interface UnknownFormatOptions {
-  type:   "unknown"
+  type:   'unknown'
   align?: Align
   small?: boolean // small font size, false by default
 }
 
+export interface ImageFormatOptions {
+  type:   'image'
+  small?: boolean // small image
+}
+
+export interface LinkFormatOptions {
+  type: 'link'
+}
+
 export type FormatOptions =
-  StringFormatOptions | NumberFormatOptions | BooleanFormatOptions | LineFormatOptions | UnknownFormatOptions
+  StringFormatOptions | NumberFormatOptions | BooleanFormatOptions | LineFormatOptions | UnknownFormatOptions |
+  ImageFormatOptions | LinkFormatOptions
 
 
 // Table -------------------------------------------------------------------------------------------
@@ -62,7 +77,7 @@ export interface Table {
   sort?:          ColumnOrder[] // ordinary sorting, max 3 columns
   wsort?:         { [column_id: string]: number } // weighted sorting
 
-  filter?:  string  // default = "" filter query, matches for any column
+  filter?:  string  // default = '' filter query, matches for any column
   filters?: { [column_id: string]: ColumnFilter } // column filters, match for specific column
 
   selected?:      number[] // Numbers of selected rows, starting from 0
@@ -81,20 +96,23 @@ export interface Column {
   id:      string
   type:    Type          // also possible to use custom types for third party formatters
   title?:  string        // same as id if not specified
+  desc?:   string        // detailed description
   format?: FormatOptions // by default same as type, also possible to use custom formatters
   width?:  number        // default = 1, width as weight, not as pixels or percentages
 
-  // domain, min/max values, for "number" columns only, if not provided will be calculated. Used for better weighted
+  // domain, min/max values, for 'number' columns only, if not provided will be calculated. Used for better weighted
   // sorting and line format.
   domain?: [number, number]
+
+  delimiter?: boolean    // Visual delimiter after column
 }
 
 
 // ColumnOrder -------------------------------------------------------------------------------------
-export type ColumnOrder = [string, "asc" | "desc"]
+export type ColumnOrder = [string, 'asc' | 'desc']
 
 
 // ColumnFilter ------------------------------------------------------------------------------------
-export type  FilterCondition =   "<=" | "<" | "=" | "!=" | ">" | ">=" | "~"
+export type  FilterCondition =   '<=' | '<' | '=' | '!=' | '>' | '>=' | '~'
 
 export type ColumnFilter = [FilterCondition, number | string | boolean]

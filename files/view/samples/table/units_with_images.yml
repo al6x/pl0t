@@ -1,0 +1,16 @@
+table:
+  columns: [
+    { id: icon,     title: '',     type: string, format: { type: image } },
+    { id: link,     title: '',     type: string, format: { type: link } },
+    { id: name,     title: Name,   type: string },
+    { id: family,   title: Family, type: string },
+    { id: age,      title: Age,    type: number },
+    { id: hp,       title: HP,     type: number, format: { type: line, ticks: [100] } },
+    { id: is_alive, title: Alive,  type: boolean }
+  ]
+
+data: [
+  [/samples/table/jim.png, /samples/table/jim.png, Jim,   Raynor, 30,   250,  true],
+  [null,                   null,                   Angus, Mengsk, 50,   100,  false],
+  [null,                   null,                   Amon,  null,   null, null, true]
+]
