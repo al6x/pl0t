@@ -71,8 +71,8 @@ export interface Table {
   // data?:          Data     // Row could be Tidy Data or Array
   // data_url?:      string   // Row could be Tidy Data or Array
 
-  title?:       string
-  description?: string
+  title?:  string
+  desc?:   string
 
   sort?:          ColumnOrder[] // ordinary sorting, max 3 columns
   wsort?:         { [column_id: string]: number } // weighted sorting

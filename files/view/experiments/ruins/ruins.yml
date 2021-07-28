@@ -29,30 +29,30 @@ table:
     width:     0.2
     delimiter: true
 
-  - id:        quality
-    title:     Кач
-    type:      string
-    desc:      Quality of building , A - good, B - normal, C bad
-    width:     0.1
+  - id:    quality
+    title: Кач
+    type:  string
+    desc:  Quality of building , A - good, B - normal, C bad
+    width: 0.1
 
-  - id:        price
-    title:     k$
-    type:      number
-    desc:      Thousands of USD
-    width:     0.1
-    format:    { type: line, ticks: [10, 50] }
+  - id:     price
+    title:  k$
+    type:   number
+    desc:   Thousands of USD
+    width:  0.1
+    format: { type: line, ticks: [10, 50] }
 
   - id:     house
     title:  Дом
     type:   number
-    desc:   House area, 100 m^2
+    desc:   House area, ar
     width:  0.1
     format: { type: line, ticks: [1, 10] }
 
   - id:        land
     title:     Земл
     type:      number
-    desc:      Land area, AR
+    desc:      Land area, ar
     width:     0.1
     delimiter: true
     format: { type: line, ticks: [10, 100] }
@@ -111,7 +111,7 @@ table:
     near:    -2
     custom:  -1
 
-  selected: [0, 1, 6, 14, 15]
+  selected: [0, 1, 6, 7, 14, 15]
 
   # [
   #   { id: image,    title: '',       type: string, format: { type: image } },
@@ -396,6 +396,22 @@ data:
   cdist: 26.5
   near: A
   wdist: 2.6
+  lwater: false
+  warm: false
+  custom: C
+
+- id: 17
+  link: https://www.avito.ru/lotoshino/kommercheskaya_nedvizhimost/pomeschenie_svobodnogo_naznacheniya_910_m_701110214
+  map: https://yandex.ru/maps/geo/derevnya_mitenevo/53040520/?ll=35.711913%2C56.495705&utm_source=main_stripe_big&z=9
+  image: /experiments/ruins/images/mitenevo.jpg
+  place: Tver, Mitenevo, School, -
+  quality: C
+  price: 8.1
+  house: 9
+  land: 100 # для объектов общественно-делового значения
+  cdist: 41
+  near: B
+  wdist: 30
   lwater: false
   warm: false
   custom: C

@@ -16,7 +16,6 @@ Text:
   [Markdown with Code and Math](http://files.pl0t.com/view/samples/text/text.md:view) |
   [This page itself](http://files.pl0t.com/view/samples/text/pl0t.md:view)
 
-
 # How to use
 
 1 **Login** [with Github](http://pl0t.com/login), you will be redirected to your subdomain

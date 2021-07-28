@@ -1,4 +1,6 @@
-import type { BaseBlock } from "./blocks"
+// Ignore this schema, it's needed only if you would like to extend PL0T
+
+import type { BaseBlock } from './blocks'
 
 export interface PlotConfig {
   blocks_limit:                number
@@ -15,31 +17,34 @@ export interface PlotConfig {
   blocks: { [block_name: string]: { default: any, definition: BlockDefinition<unknown> } }
 
   // Apps available, as Svelte components, apps can have blocks.
-  apps: { [block_name: string]: { default: any, definition: BlockDefinition<unknown> } }
+  apps: { [block_name: string]: { default: any, definition: AppDefinition<unknown> } }
 }
 
+// Parsed and normalized block
 export interface BlockExt extends BaseBlock {
   id:     string
   hash:   string
-}
 
-export interface BlockState {
-  // suggested_width_px: number
-  is_narrow: boolean
-  collapsed: boolean
+  // block_name: string // Block name
+  // klass:      any    // Svelte component
+  // ndata:      any    // Block data normalized by block's `match_and_normalize`
 }
 
 export interface BlockImplProps<T> {
-  block: T
-  state: BlockState
+  block:     T
+  is_narrow: boolean
 }
 
 export interface AppImplProps {
-  data: any
+  default_title: string | undefined
+  data:          any
 }
 
-export type RawData = object | any[] | string | number | boolean
+export type RawData = { [key: string]: any } | any[] | string | number | boolean
 export interface BlockDefinition<T> {
+  match_and_normalize: (data: RawData) => T | undefined
+}
+export interface AppDefinition<T> {
   match_and_normalize: (data: RawData) => T | undefined
 }
 

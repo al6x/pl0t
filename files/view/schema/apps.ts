@@ -1,17 +1,17 @@
-import type { Block } from "./blocks"
+import type { Block } from './blocks'
 
 export type Style = 'normal' | 'full' | 'narrow'
 
 export interface Page {
-  app:          ['page', 0.1]
-  blocks:       Block[]
+  app:      ['page', 0.1]
+  page:     Block[]
 
-  id?:          string | number
-  title?:       string
-  description?: string
-  tags?:        string[]
-  style?:       Style
-  css_url?:     string // Apply custom CSS
+  id?:      string | number
+  title?:   string
+  desc?:    string
+  tags?:    string[]
+  style?:   Style
+  css_url?: string // Apply custom CSS
 }
 
 export type Single = Block & {
@@ -31,14 +31,14 @@ export interface Dash {
   //     A A B
   //     D D C
   //   `
-  layout:       string
+  layout:   string
 
-  id?:          string | number
-  title?:       string
-  description?: string
-  tags?:        string[]
-  style?:       Style
-  css_url?:     string // Apply custom CSS
+  id?:      string | number
+  title?:   string
+  desc?:    string
+  tags?:    string[]
+  style?:   Style
+  css_url?: string // Apply custom CSS
 }
 
 export type App = Page | Single | Dash

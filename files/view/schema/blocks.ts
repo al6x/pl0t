@@ -7,11 +7,11 @@ export type Block = TextBlock | ImageBlock | ChartBlock | TableBlock
 
 // BaseBlock ---------------------------------------------------------------------------------------
 export interface BaseBlock {
-  id?:            string | number
-  title?:         string
-  description?:   string
-  collapsed?:     boolean
-  tags?:          string[]
+  id?:        string | number
+  title?:     string
+  desc?:      string
+  collapsed?: boolean
+  tags?:      string[]
 
   // Block are usually inferred, but also could be specified explicitly with block name and version
   block?:         [string, 0.1]

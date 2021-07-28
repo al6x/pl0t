@@ -29,18 +29,18 @@ table:
     width:     0.2
     delimiter: true
 
-  - id:        quality
-    title:     Кач
-    type:      string
-    desc:      Quality of building , A - good, B - normal, C bad
-    width:     0.1
+  - id:    quality
+    title: Кач
+    type:  string
+    desc:  Quality of building , A - good, B - normal, C bad
+    width: 0.1
 
-  - id:        price
-    title:     k$
-    type:      number
-    desc:      Thousands of USD
-    width:     0.1
-    format:    { type: line, ticks: [10, 50] }
+  - id:     price
+    title:  k$
+    type:   number
+    desc:   Thousands of USD
+    width:  0.1
+    format: { type: line, ticks: [10, 50] }
 
   - id:     house
     title:  Дом
