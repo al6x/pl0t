@@ -19,11 +19,7 @@ var page = Page.init(
 page.text "Some text", """
   Some formula $E=mc^2$
 
-  Some code
-
-  ```Ruby
-  puts "Hello World"
-  ```
+  Some code `echo "Hello World"`
 """.dedent
 
 
