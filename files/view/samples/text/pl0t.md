@@ -54,7 +54,7 @@ to build and validate the data and post it like with `curl` example above.
 
 **[Nim API](https://github.com/al6x/pl0t/tree/main/api/nim)** docs going to be available later, use
 [TypeScript Scheme](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts) and
-[Nim Test](https://github.com/al6x/pl0t/blob/main/api/nim/pl0t/test.nim) and
+[Nim Test](https://github.com/al6x/pl0t/blob/main/api/nim/pl0t/play.nim) and
 examples above as a reference.
 
 
