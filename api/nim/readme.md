@@ -2,6 +2,8 @@ Plot and visualise data
 
 # Example
 
+![](pl0t/pl0t-screenshot.png)
+
 Get API token http://pl0t.com and set it as `plot_api_token` env variable.
 
 Install `nimble install pl0t`
