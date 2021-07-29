@@ -1,12 +1,8 @@
 import json except to, `%`, `%*`
 import std/jsonutils, std/macros
 
-export json except to, `%`, `%*`, pretty, toUgly
+export json except to, `%`, `%*`
 export jsonutils except json_to, from_json, Joptions
-
-
-proc to_s*(json: JsonNode, pretty = true): string =
-  if pretty: pretty(json) else: $json
 
 
 proc json_to*(json: JsonNode, T: typedesc): T =
@@ -24,7 +20,6 @@ proc to_json_hook*(list: openarray[(string, JsonNode)]): JsonNode =
 
 proc to_json_hook*(n: JsonNode): JsonNode =
   n
-
 
 proc toJoImpl(x: NimNode): NimNode {.compileTime.} =
   # Same as `%*` but:
@@ -61,13 +56,17 @@ macro `%`*(v: untyped): JsonNode =
   ## `%` for every element.
   toJoImpl(v)
 
-macro jinit*[T](TT: type[T], x: untyped): T =
-  let jobject = toJoImpl(x)
-  quote do:
-    `jobject`.json_to(`TT`)
+# macro jinit*[T](TT: type[T], x: untyped): T =
+#   let jobject = toJoImpl(x)
+#   quote do:
+#     `jobject`.json_to(`TT`)
 
 
-proc update_from*[T](o: var T, partial: JsonNode): void =
-  for k, v in o.field_pairs:
-    if k in partial.fields:
-      v = partial.fields[k].json_to(typeof v)
+# proc update_from*[T](o: var T, partial: JsonNode): void =
+#   for k, v in o.field_pairs:
+#     if k in partial.fields:
+#       v = partial.fields[k].json_to(typeof v)
+
+
+# proc to_s*(json: JsonNode, pretty = true): string =
+#   if pretty: pretty(json) else: $json

@@ -4,6 +4,9 @@ We have powerful GPU in our brain, let's use it.
 
 # Demos
 
+Notebook:
+  [Page](http://files.pl0t.com/view/samples/page/page.yml:view)
+
 Table:
   [Units](http://files.pl0t.com/view/samples/table/units.yml:view) |
   [CSV](http://files.pl0t.com/view/samples/table/units.csv:view) |

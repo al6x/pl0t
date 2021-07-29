@@ -1,6 +1,28 @@
+title: Some page
+desc:  Some page description
 page:
-  - text: Hi **Alex**
+  - id:   Some text
+    text: |
+      Some formula $E=mc^2$
 
-  - table: [
-    [1, 2]
-  ]
+      Some code
+
+      ```Ruby
+      puts "Hello World"
+      ```
+
+  - id:    Some table
+    table: [
+      [1, 2]
+    ]
+
+  - id:    Some plot
+    chart: [
+      bar,
+      { x: a, type: nominal },
+      { y: b }
+    ]
+
+    data:
+      a: [1, 2, 3, 4, 5]
+      b: [1, 3, 2, -1, 2]
