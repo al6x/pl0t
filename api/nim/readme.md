@@ -54,4 +54,5 @@ page.plot "http://al6x.pl0t.com/nim_test/page.json"
 # Open URL in Browser http://al6x.pl0t.com/nim_test/page.json:view
 ```
 
-For all possible options checkout the online demos and Nim data schema in `pl0t.nim`
+For all possible options checkout the online demos and
+  [data schema](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts).
