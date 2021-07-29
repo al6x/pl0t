@@ -1,12 +1,12 @@
 table:
   columns: [
-    { id: icon,     title: '',     type: string, format: { type: image } },
-    { id: link,     title: '',     type: string, format: { type: link } },
-    { id: name,     title: Name,   type: string },
-    { id: family,   title: Family, type: string },
-    { id: age,      title: Age,    type: number },
-    { id: hp,       title: HP,     type: number, format: { type: line, ticks: [100] } },
-    { id: is_alive, title: Alive,  type: boolean }
+    { id: icon,     title: '', format: { type: image } },
+    { id: link,     title: '', format: { type: link } },
+    { id: name,     title: Name },
+    { id: family,   title: Family },
+    { id: age,      title: Age },
+    { id: hp,       title: HP, format: { type: line, ticks: [100] } },
+    { id: is_alive, title: Alive }
   ]
 
 data: [

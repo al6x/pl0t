@@ -1,7 +1,7 @@
 title: Some page
 desc:  Some page description
 page:
-  - id:   Some text
+  - id: Some text
     text: |
       Some formula $E=mc^2$
 
@@ -11,12 +11,22 @@ page:
       puts "Hello World"
       ```
 
-  - id:    Some table
-    table: [
-      [1, 2]
+  - id: Some table
+    table:
+      columns: [
+        { id: name },
+        { id: family },
+        { id: age },
+        { id: hp, format: { type: line, ticks: [100] } },
+        { id: is_alive }
+      ]
+    data: [
+      [Jim,   Raynor, 30,   250,  true],
+      [Angus, Mengsk, 50,   100,  false],
+      [Amon,  null,   null, null, true]
     ]
 
-  - id:    Some plot
+  - id: Some plot
     chart: [
       bar,
       { x: a, type: nominal },

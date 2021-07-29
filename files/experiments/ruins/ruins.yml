@@ -4,98 +4,84 @@ table:
   columns:
 
   - id:     link
-    title:  О
-    type:   string
+    title:  A
     format: { type: link }
     width:  0.05
 
   - id:     map
-    title:  К
-    type:   string
+    title:  M
     format: { type: link }
     width:  0.05
 
   - id:     image
     title:  ''
-    type:   string
     width:  2
     format: { type: image }
 
   - id:        place
-    title:     Мест
+    title:     Place
     desc:      Closest large city, name of the place, building category, note
-    type:      string
     format:    { type: string, small: true, wrap: true, break: ',' }
     width:     0.2
     delimiter: true
 
   - id:    quality
-    title: Кач
-    type:  string
+    title: Qlt
     desc:  Quality of building , A - good, B - normal, C bad
     width: 0.1
 
   - id:     price
     title:  k$
-    type:   number
     desc:   Thousands of USD
     width:  0.1
     format: { type: line, ticks: [10, 50] }
 
   - id:     house
-    title:  Дом
-    type:   number
+    title:  Bld
     desc:   House area, ar
     width:  0.1
     format: { type: line, ticks: [1, 10] }
 
   - id:        land
-    title:     Земл
-    type:      number
+    title:     Land
     desc:      Land area, ar
     width:     0.1
     delimiter: true
     format: { type: line, ticks: [10, 100] }
 
   - id:        cdist
-    title:     ГДис
-    type:      number
+    title:     CDst
     desc:      Distance to closest large city, km
     width:     0.1
     format:    { type: line, ticks: [10, 100] }
 
   - id:        near
-    title:     Рядм
+    title:     Near
     desc:      How far from my home, A < 50km, B - <300km, C > 300km
-    type:      string
     # domain:    [-1, 1]
     width:     0.1
     delimiter: true
 
   - id:     wdist
-    title:  ВДис
-    type:   number
+    title:  WDst
     desc:   Distance to closest water, km
     width:  0.1
     format: { type: line, ticks: [100, 1000], scale: log, log_unit: 1000 }
 
   - id:     lwater
-    title:  ВБол
-    type:   boolean
+    title:  LWtr
     desc:   Large water near
     width:  0.1
 
   - id:        warm
-    title:     Тепл
+    title:     Wrm
     desc:      Warm climate
-    type:      boolean
     width:     0.1
     delimiter: true
 
   - id:     custom
-    title:  Доп
+    title:  Add
     desc:   Custom preference, A - excellent, B - good, C - none
-    type:   string
     # domain: [0, 2]
     width:  0.1
 

@@ -6,6 +6,7 @@ var page = Page.init(
   desc  = "Some description"
 )
 
+
 page.text "Some text", """
   Some formula $E=mc^2$
 
@@ -16,15 +17,27 @@ page.text "Some text", """
   ```
 """.dedent
 
-page.table "Some table", [
-  [1, 2]
-]
 
-let data = (
+let table_data = @[
+  (name: "Jim Raynor",   age: 30,     hp: 250,  is_alive: true ),
+  (name: "Angus Mengsk", age: 50,     hp: 100,  is_alive: false ),
+  (name: "Amon",         age: 30000,  hp: 500,  is_alive: true)
+]
+page.table "Some table", table_data, %{
+  columns: [
+    { id: "name" },
+    { id: "age" },
+    { id: "hp", format: { type: "line", ticks: [100] } },
+    { id: "is_alive" }
+  ]
+}
+
+
+let chart_data = (
   a: [1, 2, 3,  4, 5],
   b: [1, 3, 2, -1, 2]
 )
-page.chart "Some chart", data, %[
+page.chart "Some chart", chart_data, %[
   "bar",
   { x: "a", type: "nominal" },
   { y: "b" }
@@ -32,3 +45,5 @@ page.chart "Some chart", data, %[
 
 # plot will pick up the `plot_api_token` environment variable if it's defined
 page.plot "http://al6x.pl0t.com/nim_test/page.json"
+
+# Open URL in Browser http://al6x.pl0t.com/nim_test/page.json:view

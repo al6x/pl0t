@@ -1,7 +1,6 @@
 // Types -------------------------------------------------------------------------------------------
 export type Type =
-  'string' | 'number' | 'boolean' | 'unknown' |
-  'image' | 'link'
+  'string' | 'number' | 'boolean' | 'unknown'
 
 
 // Formats -----------------------------------------------------------------------------------------
@@ -94,7 +93,7 @@ export interface Table {
 // Column ------------------------------------------------------------------------------------------
 export interface Column {
   id:      string
-  type:    Type          // also possible to use custom types for third party formatters
+  type?:   Type          // also possible to use custom types for third party formatters
   title?:  string        // same as id if not specified
   desc?:   string        // detailed description
   format?: FormatOptions // by default same as type, also possible to use custom formatters
