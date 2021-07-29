@@ -5,10 +5,10 @@ We have powerful GPU in our brain, let's use it.
 # Demos
 
 Notebook:
-  [Page](http://files.pl0t.com/view/samples/page/page.yml:view)
+  **[Page](http://files.pl0t.com/view/samples/page/page.yml:view)**
 
 Table:
-  [Units](http://files.pl0t.com/view/samples/table/units.yml:view) |
+  **[Units](http://files.pl0t.com/view/samples/table/units.yml:view)** |
   [CSV](http://files.pl0t.com/view/samples/table/units.csv:view) |
   [Countries](http://files.pl0t.com/view/samples/table/countries.yml:view)
 
@@ -17,7 +17,7 @@ Chart:
 
 Text:
   [Markdown with Code and Math](http://files.pl0t.com/view/samples/text/text.md:view) |
-  [This page itself](http://files.pl0t.com/view/samples/text/pl0t.md:view)
+  **[This page itself](http://files.pl0t.com/view/samples/text/pl0t.md:view)**
 
 # How to use
 
