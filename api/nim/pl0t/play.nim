@@ -1,5 +1,8 @@
-import ../pl0t, ./jsonm
+import ../pl0t
 import std/strutils except `%`
+
+# Optional, alters Nim 'json' module, to allow keys `%{ a: 1 }` instead of `%{ "a": 1 }`
+import ./jsonm
 
 var page = Page.init(
   title = "Some page",
