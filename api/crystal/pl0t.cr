@@ -51,11 +51,11 @@ class Page
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
+  
     <title>pl0t</title>
-
+  
     <link rel="icon" type="image/png" href="http://files.pl0t.com/view-1/favicon.ico">
-
+  
     <!-- PL0T begin, putting it at the end of the page to avoid blocking other content -->
     <script>
       window.env = {
@@ -65,22 +65,22 @@ class Page
     <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-07-31-68b4f6/bundle.css">
     <script defer src="http://files.pl0t.com/view-1/releases/2021-07-31-68b4f6/bundle.js"></script>
     <!-- PL0T end -->
-
+  
   </head>
   <body>
-
+  
   <!-- PL0T data, specify 'json', 'yml' or 'md' formats in the `type` attribute -->
   <script id="data" type="{type}">
   {data}
   </script>
-
-
+  
+  
   <script>
     window.on_plot_loaded = function() {
       window.plot_api.run()
     }
   </script>
-
+  
   </body>
   </html>
   HTML
