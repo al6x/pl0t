@@ -48,14 +48,17 @@ If you have **questions** feel free to [contact me](https://github.com/al6x/pl0t
 
 # API
 
+**[Nim API](https://github.com/al6x/pl0t/tree/main/api/nim)** docs going to be available later, use
+[TypeScript Scheme](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts) and
+examples above as a reference.
+
+**[Crystal API](https://github.com/al6x/pl0t/tree/main/api/crystal)** docs going to be available later, use
+[TypeScript Scheme](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts) and
+examples above as a reference.
+
 **TypeScript API** going to be available a bit later, use
 [TypeScript Scheme](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts)
 to build and validate the data and post it like with `curl` example above.
-
-**[Nim API](https://github.com/al6x/pl0t/tree/main/api/nim)** docs going to be available later, use
-[TypeScript Scheme](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts) and
-[Nim Test](https://github.com/al6x/pl0t/blob/main/api/nim/pl0t/play.nim) and
-examples above as a reference.
 
 
 # License
