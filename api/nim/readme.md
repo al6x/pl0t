@@ -1,4 +1,4 @@
-PL0T and See the Data
+PL0T and **See the Data**
 
 # Example
 
