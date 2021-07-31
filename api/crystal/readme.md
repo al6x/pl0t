@@ -8,10 +8,10 @@ PL0T and **See the Data**
 ```Crystal
 require "./pl0t"
 
-page = Page.new(
+
+page = Page.new \
   title = "Some page",
   desc  = "Some description"
-)
 
 
 page.text "Some text", "
