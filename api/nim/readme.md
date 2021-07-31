@@ -64,5 +64,5 @@ page.save "play.html"
 # page.publish "http://al6x.pl0t.com/nim_test/page.json"
 ```
 
-For all possible options checkout the online demos and
+For all possible options checkout [online demos](http://pl0t.com) and the
   [data schema](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts).
