@@ -9,8 +9,12 @@ Get API token http://pl0t.com and set it as `plot_api_token` env variable.
 Install `nimble install pl0t`
 
 ```Nim
-import pl0t, pl0t/jsonm
+import pl0t
 import std/strutils except `%`
+
+# Optional, alters Nim 'json' module, to allow keys `%{ a: 1 }` instead of `%{ "a": 1 }`
+import pl0t/jsonm
+
 
 var page = Page.init(
   title = "Some page",
@@ -21,7 +25,7 @@ var page = Page.init(
 page.text "Some text", """
   Some formula $E=mc^2$
 
-  Some code `echo "Hello World"`
+  Some code `puts "Hello World"`
 """.dedent
 
 
@@ -50,10 +54,19 @@ page.chart "Some chart", chart_data, %[
   { y: "b" }
 ]
 
-# plot will pick up the `plot_api_token` environment variable if it's defined
-page.plot "http://al6x.pl0t.com/nim_test/page.json"
 
-# Open URL in Browser http://al6x.pl0t.com/nim_test/page.json:view
+# Saving report as HTML file, open it the Browser to see the Notebook
+#
+# You can publish Notebook by copying it to any Web Server
+page.save "play.html"
+
+
+# Optionally, you can publish Notebook on the http://pl0t.com site.
+# You would need to get API Token from http://pl0t.com and store it as `plot_api_token` env variable
+#
+# The Notebook will be available as http://al6x.pl0t.com/nim_test/page.json:view
+#
+# page.publish "http://al6x.pl0t.com/nim_test/page.json"
 ```
 
 For all possible options checkout the online demos and

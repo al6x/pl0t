@@ -1,8 +1,0 @@
-#!/bin/bash
-
-SITE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
-
-# NODE_ENV=production npx tailwindcss -i styles.css -o tailwind.css --minify
-NODE_ENV=production npx tailwindcss -i $SITE_DIR/styles.css -o $SITE_DIR/build/bundle.css
-
-say finished

@@ -5,20 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <title>pl0t</title>
-  <link rel="icon" type="image/png" href="http://files.pl0t.com/view/favicon.ico">
 
-  <!-- PL0T begin -->
+  <link rel="icon" type="image/png" href="http://files.pl0t.com/view-1/favicon.ico">
+
+  <!-- PL0T begin, putting it at the end of the page to avoid blocking other content -->
   <script>
     window.env = {
-      base_url: "http://files.pl0t.com/view"
+      base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view/build/bundle.c133ca.css">
-  <script src="http://files.pl0t.com/view/build/bundle.410f0f.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => window.plot_api.run())
-  </script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-07-31-4ecaae/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-07-31-4ecaae/bundle.js"></script>
   <!-- PL0T end -->
+
 
   <link rel="stylesheet" href="styles.ea1430.css">
 </head>
@@ -97,6 +96,13 @@ after that it's $5 per developer per month.
 If you use free version please don't hide or remove the **PL0T** brand at the bottom of the page.
 
 [full license](https://github.com/al6x/pl0t/tree/main/license).
+</script>
+
+
+<script>
+  window.on_plot_loaded = function() {
+    window.plot_api.run()
+  }
 </script>
 
 </body>
