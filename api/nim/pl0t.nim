@@ -16,11 +16,12 @@ proc build_plot_url(url: string): string =
     throw "plot_api_token not defined, define it explicitly or as as `plot_api_token` environment variable"
   fmt"{url}?api_token={plot_api_token}"
 
-proc publish*(data: JsonNode, url: string): void =
+proc publish*(data: JsonNode, url: string, pretty = false): void =
   let url   = build_plot_url url
   let client = new_http_client()
   defer: client.close
-  discard client.post_content(url, data.pretty)
+  let json = if pretty: data.pretty else: $data
+  discard client.post_content(url, json)
 
 proc unpublish*(url: string): void =
   let url = build_plot_url url
@@ -47,8 +48,8 @@ let standalone = """<!DOCTYPE html>
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-07-31-4ecaae/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-07-31-4ecaae/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-07-31-68b4f6/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-07-31-68b4f6/bundle.js"></script>
   <!-- PL0T end -->
 
 </head>
@@ -93,7 +94,8 @@ proc chart*[D](page: var Page, id: string, data: D, chart: JsonNode): void =
 proc publish*(page: Page, url: string): void =
   page.to_json.publish url
 
-proc save*(page: Page, path: string): void =
-  let html = standalone.replace("{type}", "json").replace("{data}", page.to_json.pretty)
+proc save*(page: Page, path: string, pretty = false): void =
+  let json = if pretty: page.to_json.pretty else: $(page.to_json)
+  let html = standalone.replace("{type}", "json").replace("{data}", json)
   if file_exists path: remove_file path
   write_file(path, html)
