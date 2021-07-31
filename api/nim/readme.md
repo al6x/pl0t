@@ -1,4 +1,4 @@
-Plot and visualise data
+PL0T and See the Data
 
 # Example
 
