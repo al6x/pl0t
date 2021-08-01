@@ -1,3 +1,10 @@
+PL0T and **See the Data**
+
+# Example
+
+![](screenshot.png)
+
+```Groovy
 def page = new Page(title: 'Some page', desc: 'Some description')
 
 
@@ -52,3 +59,6 @@ page.save('play.html')
 // You would need to get API Token from http://pl0t.com and store it as `plot_api_token` env variable
 // The Notebook will be available as http://al6x.pl0t.com/groovy_test/page.json:view
 // page.publish('http://al6x.pl0t.com/groovy_test/page.json')
+```
+
+For more examples checkout [online demos](http://pl0t.com).

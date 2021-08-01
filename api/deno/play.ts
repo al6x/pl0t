@@ -11,9 +11,9 @@ blocks.push({ id: 'Some text', text: `
 
 
 const table_data = [
-  { name: 'Jim Raynor',   age: 30,     hp: 250,  is_alive: true },
-  { name: 'Angus Mengsk', age: 50,     hp: 100,  is_alive: false },
-  { name: 'Amon',                                is_alive: true }
+  { name: 'Jim Raynor',   age: 30, hp: 250,  is_alive: true },
+  { name: 'Angus Mengsk', age: 50, hp: 100,  is_alive: false },
+  { name: 'Amon',                            is_alive: true }
 ]
 blocks.push({ id: 'Some table', data: table_data, table: {
   columns: [

@@ -48,8 +48,8 @@ let standalone = """<!DOCTYPE html>
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-01-6fb7d9/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-01-6fb7d9/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-02-74f016/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-02-74f016/bundle.js"></script>
   <!-- PL0T end -->
 
 </head>
