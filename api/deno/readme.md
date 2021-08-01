@@ -9,6 +9,7 @@ import { Block, App, save, publish } from 'https://raw.githubusercontent.com/al6
 
 const blocks: Block[] = []
 
+
 blocks.push({ id: 'Some text', text: `
   Some formula $E=mc^2$
 
@@ -41,12 +42,14 @@ blocks.push({ id: 'Some chart', data: chart_data, chart: [
   { y: 'b' }
 ] })
 
+
 const page: App = {
   app:   ['page', 0.1],
   title: 'Some page',
   desc:  'Some description',
   page:  blocks
 }
+
 
 // # Saving report as HTML file, open it the Browser to see the Notebook
 // # You can publish Notebook by copying it to any Web Server
