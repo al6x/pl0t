@@ -2,7 +2,7 @@ PL0T and **See the Data**
 
 # Example
 
-![](pl0t/screenshot.png)
+![](screenshot.png)
 
 ```TypeScript
 import { Block, App, save, publish } from 'https://raw.githubusercontent.com/al6x/pl0t/main/api/deno/0.1/pl0t.ts'
