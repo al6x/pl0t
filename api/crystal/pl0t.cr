@@ -73,7 +73,7 @@ class Page
   </head>
   <body>
   
-  <!-- PL0T data, specify 'json', 'yml' or 'md' formats in the `type` attribute -->
+  <!-- PL0T data, specify 'json', 'yml' or 'md' formats in the 'type' attribute -->
   <script id="data" type="{type}">
   {data}
   </script>
