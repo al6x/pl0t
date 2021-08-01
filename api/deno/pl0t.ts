@@ -2,20 +2,6 @@ import { App } from './schema/mod.ts'
 
 export * from './schema/mod.ts'
 
-// export class PageImpl implements Page {
-//   public app:    ["page", 0.1] = ["page", 0.1]
-//   public page:   Block[] = []
-//   public id?:    string | number | undefined
-//   public title?: string | undefined
-//   public desc?:  string | undefined
-//   public tags?:  string[] | undefined
-//   public style?: Style | undefined
-//   public css?:   string | DataUrl | undefined
-
-//   constructor(page: Partial<Page>) {
-//     Object.assign(this, page)
-//   }
-// }
 
 export async function save(app: App, path: string, pretty = false): Promise<void> {
   const json = pretty ? JSON.stringify(app, null, 2) : JSON.stringify(app)
@@ -23,12 +9,14 @@ export async function save(app: App, path: string, pretty = false): Promise<void
   await Deno.writeFile(path, (new TextEncoder()).encode(html))
 }
 
+
 export async function publish(app: App, url: string, pretty = false): Promise<void> {
   const json = pretty ? JSON.stringify(app, null, 2) : JSON.stringify(app)
   const headers = { api_token: api_token() }
   const resp = await fetch(url, { method: 'POST', headers, body: json })
   if (resp.status != 200) throw new Error(`can't publis page, ${resp.text()}`)
 }
+
 
 export async function unpublish(url: string): Promise<void> {
   const headers = { api_token: api_token() }
@@ -68,7 +56,7 @@ const standalone = `<!DOCTYPE html>
 </head>
 <body>
 
-<!-- PL0T data, specify 'json', 'yml' or 'md' formats in the `type` attribute -->
+<!-- PL0T data, specify 'json', 'yml' or 'md' formats in the 'type' attribute -->
 <script id="data" type="{type}">
 {data}
 </script>

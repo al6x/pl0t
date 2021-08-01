@@ -1,4 +1,4 @@
-import { Block, App, save, publish } from './pl0t.ts'
+import { Block, App, save, publish } from 'https://raw.githubusercontent.com/al6x/pl0t/main/api/deno/pl0t.ts'
 
 const blocks: Block[] = []
 
