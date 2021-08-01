@@ -32,7 +32,7 @@ export interface TextBlock extends BaseBlock {
 
 // ImageBlock --------------------------------------------------------------------------------------
 export interface ImageBlock extends BaseBlock {
-  image: string | DataUrl
+  image: DataUrl | { base64: string }
 }
 
 

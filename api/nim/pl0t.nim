@@ -48,8 +48,8 @@ let standalone = """<!DOCTYPE html>
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-07-31-a5a96f/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-07-31-a5a96f/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-01-b98da1/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-01-b98da1/bundle.js"></script>
   <!-- PL0T end -->
 
 </head>
@@ -75,12 +75,11 @@ let standalone = """<!DOCTYPE html>
 
 # Page ---------------------------------------------------------------------------------------------
 type Page* = ref object
-  title*: string
-  desc*:  string
-  page*:  seq[JsonNode]
+  attrs: JsonNode
+  page*: seq[JsonNode]
 
-proc init*(_: type[Page], title: string, desc: string): Page =
-  Page(title: title, desc: desc)
+proc init*(_: type[Page], attrs: JsonNode): Page =
+  Page(attrs: attrs)
 
 proc text*(page: var Page, id: string, text: string): void =
   page.page.add (id: id, text: text).to_json
@@ -91,11 +90,20 @@ proc table*[D](page: var Page, id: string, data: D, table: JsonNode = newJObject
 proc chart*[D](page: var Page, id: string, data: D, chart: JsonNode): void =
   page.page.add (id: id, chart: chart, data: data).to_json
 
-proc publish*(page: Page, url: string): void =
-  page.to_json.publish url
+proc image*(page: var Page, id: string, data: JsonNode): void =
+  page.page.add (id: id, image: data).to_json
+
+proc as_json(page: Page): JsonNode =
+  var json = ($(page.attrs)).parse_json # Have no idea how to clone it otherwise
+  json["page"] = page.page.to_json
+  json
+
+proc publish*(page: Page, url: string, pretty = false): void =
+  page.as_json.publish(url, pretty)
 
 proc save*(page: Page, path: string, pretty = false): void =
-  let json = if pretty: page.to_json.pretty else: $(page.to_json)
-  let html = standalone.replace("{type}", "json").replace("{data}", json)
+  let json = page.as_json
+  let json_s = if pretty: json.pretty else: $json
+  let html = standalone.replace("{type}", "json").replace("{data}", json_s)
   if file_exists path: remove_file path
   write_file(path, html)

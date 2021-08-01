@@ -1,4 +1,5 @@
 import type { Block } from './blocks'
+import type { DataUrl } from './plot'
 
 export type Style = 'normal' | 'full' | 'narrow'
 
@@ -11,13 +12,13 @@ export interface Page {
   desc?:    string
   tags?:    string[]
   style?:   Style
-  css_url?: string // Apply custom CSS
+  css?:     string | DataUrl // Apply custom CSS
 }
 
 export type Single = Block & {
   app:      ['block', 0.1]
   style?:   Style
-  css_url?: string // Apply custom CSS
+  css?:     string | DataUrl // Apply custom CSS
 }
 
 export interface Dash {
@@ -38,7 +39,7 @@ export interface Dash {
   desc?:    string
   tags?:    string[]
   style?:   Style
-  css_url?: string // Apply custom CSS
+  css?:     string | DataUrl // Apply custom CSS
 }
 
 export type App = Page | Single | Dash

@@ -14,10 +14,11 @@ import std/strutils except `%`
 import pl0t/jsonm
 
 
-var page = Page.init(
-  title = "Some page",
-  desc  = "Some description"
-)
+var page = Page.init %{
+  title: "Some page",
+  desc:  "Some description",
+  # css:   "body { background-color: red !important; }" // Use for custom styling
+}
 
 
 page.text "Some text", """

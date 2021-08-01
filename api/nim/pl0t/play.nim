@@ -5,10 +5,11 @@ import std/strutils except `%`
 import pl0t/jsonm
 
 
-var page = Page.init(
-  title = "Some page",
-  desc  = "Some description"
-)
+var page = Page.init %{
+  title: "Some page",
+  desc:  "Some description",
+  # css:   "body { background-color: red !important; }" // Use for custom styling
+}
 
 
 page.text "Some text", """
@@ -42,6 +43,13 @@ page.chart "Some chart", chart_data, %[
   { x: "a", type: "nominal" },
   { y: "b" }
 ]
+
+
+# page.image "Some image", %{
+#   # Tiny black pixel encoded as base64 image.
+#   # Also url could be supplied as `url: "http://some-url"`.
+#   base64: "R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+# }
 
 
 # Saving report as HTML file, open it the Browser to see the Notebook

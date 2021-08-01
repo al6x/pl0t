@@ -19,6 +19,10 @@ class Page
     add_block({ id: id, chart: chart, data: data })
   end
 
+  def image(id : String, data)
+    add_block({ id: id, data: data })
+  end
+
   def save(path : String)
     html = @standalone.sub("{type}", "yaml").sub("{data}", data.to_yaml)
     File.write path, html
@@ -62,8 +66,8 @@ class Page
         base_url: "http://files.pl0t.com/view-1"
       }
     </script>
-    <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-07-31-a5a96f/bundle.css">
-    <script defer src="http://files.pl0t.com/view-1/releases/2021-07-31-a5a96f/bundle.js"></script>
+    <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-01-b98da1/bundle.css">
+    <script defer src="http://files.pl0t.com/view-1/releases/2021-08-01-b98da1/bundle.js"></script>
     <!-- PL0T end -->
   
   </head>
