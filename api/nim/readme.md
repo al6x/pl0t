@@ -54,6 +54,13 @@ page.chart "Some chart", chart_data, %[
 ]
 
 
+# page.image "Some image", %{
+#   # Tiny black pixel encoded as base64 image.
+#   # Also url could be supplied as `url: "http://some-url"`.
+#   base64: "R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+# }
+
+
 # Saving report as HTML file, open it the Browser to see the Notebook
 # You can publish Notebook by copying it to any Web Server
 page.save "play.html"
