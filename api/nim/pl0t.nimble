@@ -1,4 +1,4 @@
-version     = "0.182"
+version     = "0.183"
 author      = "http://pl0t.com"
 description = "Plot and visualise data"
 license     = "Proprietary"
