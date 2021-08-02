@@ -2,10 +2,13 @@ import { App } from './schema/mod.ts'
 
 export * from './schema/mod.ts'
 
+export function toHtml(app: App, pretty = false): string {
+  const json = pretty ? JSON.stringify(app, null, 2) : JSON.stringify(app)
+  return standalone.replace('{type}', 'json').replace('{data}', json)
+}
 
 export async function save(app: App, path: string, pretty = false): Promise<void> {
-  const json = pretty ? JSON.stringify(app, null, 2) : JSON.stringify(app)
-  let html = standalone.replace('{type}', 'json').replace('{data}', json)
+  let html = toHtml(app, pretty)
   await Deno.writeFile(path, (new TextEncoder()).encode(html))
 }
 
@@ -49,8 +52,8 @@ const standalone = `<!DOCTYPE html>
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-02-74f016/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-02-74f016/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-02-8bf84d/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-02-8bf84d/bundle.js"></script>
   <!-- PL0T end -->
 
 </head>

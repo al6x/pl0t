@@ -1,4 +1,6 @@
-import { Block, App, save, publish } from 'https://raw.githubusercontent.com/al6x/pl0t/main/api/deno/0.1/pl0t.ts'
+import {
+  Block, App, toHtml, save, publish
+} from 'https://raw.githubusercontent.com/al6x/pl0t/main/api/deno/0.1/pl0t.ts'
 
 const blocks: Block[] = []
 
@@ -46,12 +48,15 @@ const page: App = {
 
 // Saving report as HTML file, open it the Browser to see the Notebook
 // You can publish Notebook by copying it to any Web Server
-// Run as `deno run -r --allow-write play.ts`
-await save(page, 'play.html')
+// Run as `deno run play.ts > play.html`
+console.log(toHtml(page))
+
+// You can also use `save` and run as `deno run --allow-write play.ts`
+// await save(page, 'play.html')
 
 
 // Optionally, you can publish Notebook on the http://pl0t.com site.
 // You would need to get API Token from http://pl0t.com and store it as `plot_api_token` env variable
 // The Notebook will be available as http://al6x.pl0t.com/deno_test/page.json:view
-// Run as `deno run -r --allow-write --allow-env --allow-net play.ts`
+// Run as `deno run --allow-write --allow-env --allow-net play.ts`
 // await publish(page, 'http://al6x.pl0t.com/deno_test/page.json')
