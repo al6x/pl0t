@@ -34,6 +34,7 @@ Use API for your language to create plot documents:
 Language               | Note
 ---------------------- | --------------------------------------------------------------
 [TypeScript][deno_api] | Deno, with types, schema validation and autocomplete.
+[Ruby][ruby_api]       | Docs going to be available later, use [schema][schema] and examples.
 [Nim][nim_api]         | Docs going to be available later, use [schema][schema] and examples.
 [Crystal][crystal_api] | Docs going to be available later, use [schema][schema] and examples.
 [Groovy][groovy_api]   | Docs going to be available later, use [schema][schema] and examples.
@@ -83,6 +84,7 @@ If you use free version please don't hide or remove the **PL0T** brand at the bo
 
 
 [deno_api]: https://github.com/al6x/pl0t/tree/main/api/deno
+[ruby_api]: https://github.com/al6x/pl0t/tree/main/api/ruby
 [nim_api]: https://github.com/al6x/pl0t/tree/main/api/nim
 [crystal_api]: https://github.com/al6x/pl0t/tree/main/api/crystal
 [groovy_api]: https://github.com/al6x/pl0t/tree/main/api/groovy
