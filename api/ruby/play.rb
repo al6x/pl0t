@@ -54,5 +54,5 @@ puts page.to_html
 
 # Optionally, you can publish Notebook on the http://pl0t.com site.
 # You would need to get API Token from http://pl0t.com and store it as `plot_api_token` env variable
-# The Notebook will be available as http://al6x.pl0t.com/ruby_test/page.yaml:view
-# page.publish 'http://al6x.pl0t.com/ruby_test/page2.yaml'
+# The Notebook will be available as http://al6x.pl0t.com/ruby_test/page.json:view
+# page.publish 'http://al6x.pl0t.com/ruby_test/page2.json'
