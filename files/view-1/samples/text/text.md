@@ -12,7 +12,13 @@ And **KaTeX** snippets $E=mc^2$ and blocks
 
 $$f(x) = ax^2 + bx + c$$
 
+Simple **table**
+
 Header 1 | Header 2
 -------- | --------
 Cell 1   | Cell 2
 Cell 3   | Cell 4
+
+And **HTML**
+
+Some <span style="color: #4338CA; font-weight: bold;">blue</span> text.

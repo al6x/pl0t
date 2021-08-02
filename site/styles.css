@@ -13,6 +13,10 @@
   white-space: nowrap;
 }
 
+.markdown thead {
+  display: none;
+}
+
 /* .markdown > h1 {
   font-size: 2rem;
   margin-top: 2rem;
