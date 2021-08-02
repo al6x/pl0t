@@ -4,11 +4,13 @@ PL0T and **See the Data**
 
 ![](screenshot.png)
 
-The example below be run with deno safely, without any permissions as
+The example below could be run with deno safely, without any permissions as:
 
     deno run https://raw.githubusercontent.com/al6x/pl0t/main/api/deno/play.ts > play.html
 
-It generates the play.html notebook page, that could be opened locally, or shared on any site.
+It generates the `play.html` notebook page, that could be opened locally, or shared on any site.
+
+The code:
 
 ```TypeScript
 import {
