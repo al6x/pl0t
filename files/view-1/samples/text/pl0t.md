@@ -1,35 +1,32 @@
-# *PL0T* and **See the Data**
+# <span class="brand">PL0T</span> and <span class="bold blue">See the Data</span>
 
 We have powerful GPU in our brain, let's use it.
 
 
 # Demos
 
-Notebook:
-  **[Page](http://files.pl0t.com/view/samples/page/page.yml:view)**
-
-Table:
-  [Units](http://files.pl0t.com/view/samples/table/units.yml:view) |
-  [CSV](http://files.pl0t.com/view/samples/table/units.csv:view) |
-  [Countries](http://files.pl0t.com/view/samples/table/countries.yml:view)
-
-Chart:
-  [Bar](http://files.pl0t.com/view/samples/chart/bar.yml:view)
-
-Text:
-  [Markdown with Code and Math](http://files.pl0t.com/view/samples/text/text.md:view) |
-  [This page itself](http://files.pl0t.com/view/samples/text/pl0t.md:view)
+App      | Demo
+-------- | --------------------------------------------------------------
+Notebook | **[Page][notebook_page]**
+Table    | [Units][table_units], [CSV][table_csv], [Countries][table_countries]
+Chart    | [Bar][chart_bar]
+Text     | [Markdown with Code and Math][markdown_page]
 
 
 # How to use
 
----
+<span class="hero">
+  A plot is <span class="bold">plain html</span>.
+  You can open it <span class="bold">locally or share</span> on any site.
+</span>
 
-A plot document is just a **plain html file**. You can open it **locally or share** on any site.
+Command Line:
 
----
+    plot="{chart:[bar,{x: a},{y: b}],data:{a:[1,2],b:[2,4]}}"
+    curl -s http://pl0t.com/view.html | sed "s/{data}/$plot/" > play.html
+    open play.html
 
-Use API for your language to create plot documents:
+Language API:
 
 Language               | Note
 ---------------------- | --------------------------------------------------------------
@@ -44,7 +41,7 @@ If you have **questions** feel free to [contact me](https://github.com/al6x/pl0t
 
 # Share
 
-You may use pl0t.com to share your documents.
+You may use http://pl0t.com to share your documents
 
 1 Login [with Github](http://pl0t.com/login), you will be redirected to your subdomain
 
@@ -78,7 +75,8 @@ sales less than $1 million.
 For commercial businesses with annual sales greather than $1 million, the first month is free,
 after that it's $5 per developer per month.
 
-If you use free version please don't hide or remove the **PL0T** brand at the bottom of the page.
+If you use free version please don't hide or remove the <span class="brand">PL0T</span> brand at
+the bottom of the page.
 
 [full license](https://github.com/al6x/pl0t/tree/main/license).
 
@@ -91,3 +89,13 @@ If you use free version please don't hide or remove the **PL0T** brand at the bo
 
 [schema]: https://github.com/al6x/pl0t/blob/main/files/view-1/schema/blocks.ts
 
+
+[notebook_page]: http://files.pl0t.com/view/samples/page/page.yml:view
+[table_units]: http://files.pl0t.com/view/samples/table/units.yml:view
+[table_csv]: http://files.pl0t.com/view/samples/table/units.csv:view
+[table_countries]: http://files.pl0t.com/view/samples/table/countries.yml:view
+
+[chart_bar]: http://files.pl0t.com/view/samples/chart/bar.yml:view
+
+[markdown_page]: http://files.pl0t.com/view/samples/text/text.md:view
+[markdown_site]: http://files.pl0t.com/view/samples/text/pl0t.md:view

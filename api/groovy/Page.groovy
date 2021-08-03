@@ -83,14 +83,13 @@ String standalone = """<!DOCTYPE html>
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-03-e1d679/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-03-e1d679/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-03-f02219/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-03-f02219/bundle.js"></script>
   <!-- PL0T end -->
-
 </head>
 <body>
 
-<!-- PL0T data, specify 'json', 'yml' or 'md' formats in the 'type' attribute -->
+<!-- PL0T data, type could be 'yaml', 'json' or 'md' -->
 <script id="data" type="{type}">
 {data}
 </script>
