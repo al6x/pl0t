@@ -12,6 +12,7 @@ Table    | [Units][table_units], [CSV][table_csv], [Countries][table_countries]
 Chart    | [Bar][chart_bar]
 Text     | [Markdown with Code and Math][markdown_page], [This site][markdown_site]
 
+And all the charts in the background.
 
 # How to use
 

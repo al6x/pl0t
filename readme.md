@@ -10,4 +10,4 @@ Example:
 
 Language API and more visit http://pl0t.com
 
-![](screen.png)
+![](readme/screen2.png)
