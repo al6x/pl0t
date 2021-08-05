@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.*;
 import java.util.*;
 
+// Flexible JSON used, you can omit quotes
 public class Page {
   private boolean _isFirst = true;
   private StringBuffer json = new StringBuffer();
@@ -146,42 +147,42 @@ public class Page {
 
   // standalone begin
   private static String standalone = (
-    "<!DOCTYPE html>\n" + 
-    "<html lang=\"en\">\n" + 
-    "<head>\n" + 
-    "  <meta charset=\"utf-8\">\n" + 
-    "  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n" + 
-    "\n" + 
-    "  <title>pl0t</title>\n" + 
-    "\n" + 
-    "  <link rel=\"icon\" type=\"image/png\" href=\"http://files.pl0t.com/view-1/favicon.ico\">\n" + 
-    "\n" + 
-    "  <!-- PL0T begin, putting it at the end of the page to avoid blocking other content -->\n" + 
-    "  <script>\n" + 
-    "    window.env = {\n" + 
-    "      base_url: \"http://files.pl0t.com/view-1\"\n" + 
-    "    }\n" + 
-    "  </script>\n" + 
-    "  <link rel=\"stylesheet\" href=\"http://files.pl0t.com/view-1/releases/2021-08-06-c69347/bundle.css\">\n" + 
-    "  <script defer src=\"http://files.pl0t.com/view-1/releases/2021-08-06-c69347/bundle.js\"></script>\n" + 
-    "  <!-- PL0T end -->\n" + 
-    "</head>\n" + 
-    "<body>\n" + 
-    "\n" + 
-    "<!-- PL0T data, type could be 'yaml', 'json' or 'md' -->\n" + 
-    "<script id=\"data\" type=\"{type}\">\n" + 
-    "{data}\n" + 
-    "</script>\n" + 
-    "\n" + 
-    "\n" + 
-    "<script>\n" + 
-    "  window.on_plot_loaded = function() {\n" + 
-    "    window.plot_api.run()\n" + 
-    "  }\n" + 
-    "</script>\n" + 
-    "\n" + 
-    "</body>\n" + 
-    "</html>\n" + 
+    "<!DOCTYPE html>\n" +
+    "<html lang=\"en\">\n" +
+    "<head>\n" +
+    "  <meta charset=\"utf-8\">\n" +
+    "  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n" +
+    "\n" +
+    "  <title>pl0t</title>\n" +
+    "\n" +
+    "  <link rel=\"icon\" type=\"image/png\" href=\"http://files.pl0t.com/view-1/favicon.ico\">\n" +
+    "\n" +
+    "  <!-- PL0T begin, putting it at the end of the page to avoid blocking other content -->\n" +
+    "  <script>\n" +
+    "    window.env = {\n" +
+    "      base_url: \"http://files.pl0t.com/view-1\"\n" +
+    "    }\n" +
+    "  </script>\n" +
+    "  <link rel=\"stylesheet\" href=\"http://files.pl0t.com/view-1/releases/2021-08-06-c69347/bundle.css\">\n" +
+    "  <script defer src=\"http://files.pl0t.com/view-1/releases/2021-08-06-c69347/bundle.js\"></script>\n" +
+    "  <!-- PL0T end -->\n" +
+    "</head>\n" +
+    "<body>\n" +
+    "\n" +
+    "<!-- PL0T data, type could be 'yaml', 'json' or 'md' -->\n" +
+    "<script id=\"data\" type=\"{type}\">\n" +
+    "{data}\n" +
+    "</script>\n" +
+    "\n" +
+    "\n" +
+    "<script>\n" +
+    "  window.on_plot_loaded = function() {\n" +
+    "    window.plot_api.run()\n" +
+    "  }\n" +
+    "</script>\n" +
+    "\n" +
+    "</body>\n" +
+    "</html>\n" +
     "\n"
   );
   // standalone end

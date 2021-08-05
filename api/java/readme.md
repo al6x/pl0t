@@ -42,6 +42,7 @@ public class Play {
       new Row("Angus Mengsk", 50,    100, false),
       new Row("Amon",         15000, 500, true),
     };
+    // Flexible JSON used, you can omit quotes
     page.table("Some table", table_data,
       "{\n" +
       "  columns: [\n" +
@@ -58,6 +59,7 @@ public class Play {
     Map<String, List<Integer>> chart_data = new HashMap<>();
     chart_data.put("a", List.of(1, 2, 3,  4, 5));
     chart_data.put("b", List.of(1, 3, 2, -1, 2));
+    // Flexible JSON used, you can omit quotes
     page.chart("Some chart", chart_data, "[\n" +
       "  bar,\n" +
       "  { x: a, type: nominal },\n" +
