@@ -1,3 +1,10 @@
+PL0T and **See the Data**
+
+# Example
+
+![](screenshot.png)
+
+```Java
 import pl0t.Page;
 
 import java.util.HashMap;
@@ -64,3 +71,6 @@ public class Play {
     page.save("play.html");
   }
 }
+```
+
+For more examples checkout [online demos](http://pl0t.com).

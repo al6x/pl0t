@@ -2,3 +2,5 @@
 tmp
 node_modules
 play.html
+out
+.idea
