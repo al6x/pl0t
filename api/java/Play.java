@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Play {
+
+  // Data class for table
   public static class Row {
     public String  name;
     public int     age;
