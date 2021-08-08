@@ -33,6 +33,7 @@ Language               | Note
 ---------------------- | --------------------------------------------------------------
 [TypeScript][deno_api] | Deno, with types, schema validation and autocomplete.
 [Ruby][ruby_api]       | Docs going to be available later, use [schema][schema] and examples.
+[Java][java_api]       | Docs going to be available later, use [schema][schema] and examples.
 [Nim][nim_api]         | Docs going to be available later, use [schema][schema] and examples.
 [Crystal][crystal_api] | Docs going to be available later, use [schema][schema] and examples.
 [Groovy][groovy_api]   | Docs going to be available later, use [schema][schema] and examples.
@@ -84,6 +85,7 @@ the bottom of the page.
 
 [deno_api]: https://github.com/al6x/pl0t/tree/main/api/deno
 [ruby_api]: https://github.com/al6x/pl0t/tree/main/api/ruby
+[java_api]: https://github.com/al6x/pl0t/tree/main/api/java
 [nim_api]: https://github.com/al6x/pl0t/tree/main/api/nim
 [crystal_api]: https://github.com/al6x/pl0t/tree/main/api/crystal
 [groovy_api]: https://github.com/al6x/pl0t/tree/main/api/groovy
