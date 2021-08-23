@@ -83,8 +83,8 @@ String standalone = """<!DOCTYPE html>
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-06-c69347/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-06-c69347/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-23-c03b56/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-23-c03b56/bundle.js"></script>
   <!-- PL0T end -->
 </head>
 <body>

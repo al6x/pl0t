@@ -1,4 +1,4 @@
-# <span class="brand">PL0T</span> and <span class="bold blue">See the Data</span>
+# <span class="brand">PL0T</span> and <span class="bold blue nowrap">See the Data</span>
 
 We have powerful GPU in our brain, let's use it.
 
