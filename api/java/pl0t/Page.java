@@ -163,8 +163,8 @@ public class Page {
     "      base_url: \"http://files.pl0t.com/view-1\"\n" + 
     "    }\n" + 
     "  </script>\n" + 
-    "  <link rel=\"stylesheet\" href=\"http://files.pl0t.com/view-1/releases/2021-08-23-c03b56/bundle.css\">\n" + 
-    "  <script defer src=\"http://files.pl0t.com/view-1/releases/2021-08-23-c03b56/bundle.js\"></script>\n" + 
+    "  <link rel=\"stylesheet\" href=\"http://files.pl0t.com/view-1/releases/2021-08-28-f89351/bundle.css\">\n" + 
+    "  <script defer src=\"http://files.pl0t.com/view-1/releases/2021-08-28-f89351/bundle.js\"></script>\n" + 
     "  <!-- PL0T end -->\n" + 
     "</head>\n" + 
     "<body>\n" + 
