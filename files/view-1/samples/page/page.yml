@@ -20,6 +20,7 @@ page:
         { id: hp, format: { type: line, ticks: [100] } },
         { id: is_alive }
       ]
+    desc: Some description
     data: [
       [Jim,   Raynor, 30,   250,  true],
       [Angus, Mengsk, 50,   100,  false],

@@ -52,8 +52,8 @@ const standalone = `<!DOCTYPE html>
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-30-b1cf3c/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-30-b1cf3c/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-30-209971/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-30-209971/bundle.js"></script>
   <!-- PL0T end -->
 </head>
 <body>
