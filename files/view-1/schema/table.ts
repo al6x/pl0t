@@ -85,6 +85,7 @@ export interface Table {
   selectable?:    boolean // default = true
   sortable?:      boolean // default = true
   show_controls?: boolean // default = true
+  show_toolbar?:  boolean // default = true
 
   debug?:         boolean // default = false, used for debug
 }
