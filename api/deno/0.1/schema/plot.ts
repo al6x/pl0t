@@ -3,7 +3,7 @@
 
 // Data --------------------------------------------------------------------------------------------
 export type Value   = string | number | boolean | Date | undefined | null
-export type Row     = Record<string, Value> | Value[]
+export type Row     = Value[] | object // Record<string, Value>
 export type Data    = Row[] | { [key: string]: Value[] }
 export type DataUrl = { url: string }
 

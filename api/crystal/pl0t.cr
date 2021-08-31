@@ -60,14 +60,14 @@ class Page
   
     <link rel="icon" type="image/png" href="http://files.pl0t.com/view-1/favicon.ico">
   
-    <!-- PL0T begin, putting it at the end of the page to avoid blocking other content -->
+    <!-- PL0T begin -->
     <script>
       window.env = {
         base_url: "http://files.pl0t.com/view-1"
       }
     </script>
-    <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-30-209971/bundle.css">
-    <script defer src="http://files.pl0t.com/view-1/releases/2021-08-30-209971/bundle.js"></script>
+    <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-09-01-5274c1/bundle.css">
+    <script defer src="http://files.pl0t.com/view-1/releases/2021-09-01-5274c1/bundle.js"></script>
     <!-- PL0T end -->
   </head>
   <body>

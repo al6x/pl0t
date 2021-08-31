@@ -157,14 +157,14 @@ public class Page {
     "\n" + 
     "  <link rel=\"icon\" type=\"image/png\" href=\"http://files.pl0t.com/view-1/favicon.ico\">\n" + 
     "\n" + 
-    "  <!-- PL0T begin, putting it at the end of the page to avoid blocking other content -->\n" + 
+    "  <!-- PL0T begin -->\n" + 
     "  <script>\n" + 
     "    window.env = {\n" + 
     "      base_url: \"http://files.pl0t.com/view-1\"\n" + 
     "    }\n" + 
     "  </script>\n" + 
-    "  <link rel=\"stylesheet\" href=\"http://files.pl0t.com/view-1/releases/2021-08-30-209971/bundle.css\">\n" + 
-    "  <script defer src=\"http://files.pl0t.com/view-1/releases/2021-08-30-209971/bundle.js\"></script>\n" + 
+    "  <link rel=\"stylesheet\" href=\"http://files.pl0t.com/view-1/releases/2021-09-01-5274c1/bundle.css\">\n" + 
+    "  <script defer src=\"http://files.pl0t.com/view-1/releases/2021-09-01-5274c1/bundle.js\"></script>\n" + 
     "  <!-- PL0T end -->\n" + 
     "</head>\n" + 
     "<body>\n" + 

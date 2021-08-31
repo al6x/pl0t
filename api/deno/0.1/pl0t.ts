@@ -17,14 +17,14 @@ export async function publish(app: App, url: string, pretty = false): Promise<vo
   const json = pretty ? JSON.stringify(app, null, 2) : JSON.stringify(app)
   const headers = { api_token: api_token() }
   const resp = await fetch(url, { method: 'POST', headers, body: json })
-  if (resp.status != 200) throw new Error(`can't publis page, ${resp.text()}`)
+  if (resp.status != 200) throw new Error(`can't publis page, ${await resp.text()}`)
 }
 
 
 export async function unpublish(url: string): Promise<void> {
   const headers = { api_token: api_token() }
   const resp = await fetch(url, { method: 'DELETE', headers })
-  if (resp.status != 200) throw new Error(`can't publis page, ${resp.text()}`)
+  if (resp.status != 200) throw new Error(`can't publis page, ${await resp.text()}`)
 }
 
 
@@ -46,14 +46,14 @@ const standalone = `<!DOCTYPE html>
 
   <link rel="icon" type="image/png" href="http://files.pl0t.com/view-1/favicon.ico">
 
-  <!-- PL0T begin, putting it at the end of the page to avoid blocking other content -->
+  <!-- PL0T begin -->
   <script>
     window.env = {
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-08-30-209971/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-08-30-209971/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-09-01-5274c1/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-09-01-5274c1/bundle.js"></script>
   <!-- PL0T end -->
 </head>
 <body>
