@@ -222,10 +222,10 @@ function beds_to_sm(type: HAType, beds: number): number | undefined {
     .values()
 
   const price_scale = {
-    // domain: [50000, 5000000],
-    // vega: {
-    //   axis: { values: [50000, 100000, 250000, 500000, 1000000, 2000000, 5000000] }
-    // }
+    domain: [50000, 5000000],
+    vega: {
+      axis: { values: [50000, 100000, 250000, 500000, 1000000, 2000000, 5000000] }
+    }
   }
 
   page_main_section.push({
@@ -284,9 +284,9 @@ function beds_to_sm(type: HAType, beds: number): number | undefined {
     .values()
 
     const price_scale = {
-      // vega: {
-      //   axis: { values: [100, 1000, 5000, 10000, 20000, 50000, 100000] }
-      // }
+      vega: {
+        axis: { values: [100, 1000, 5000, 10000, 20000, 50000, 100000] }
+      }
     }
 
     // Prices per m2
