@@ -369,13 +369,21 @@ function beds_to_sm(type: HAType, beds: number): number | undefined {
     app:   ['page', 0.1],
     title: 'Australian Real Estate Stats 2021-08',
     page: [
+      {
+        id: `How to customise this report`,
+        text: `
+          This [report is open](https://github.com/al6x/pl0t/blob/main/files/experiments/ausprops/analyse.ts)
+          and you can run it yourself, if you wish to customise calculations or add your own.
+          You would need Deno to run it:
+
+              deno run --allow-net --unstable https://raw.githubusercontent.com/al6x/pl0t/main/files/experiments/ausprops/analyse.ts > report-2021-08.html
+              open report-2021-08.html
+        `
+      },
       ...page_main_section,
       {
         id: `Second part`,
-        text: `
-          You can **ignore the second part**, it's some random explorations of data and it may not be
-          interested to you.
-        `
+        text: `You can **ignore the second part**, it's some random data explorations.`
       },
       ...page_secondary_section
     ]
