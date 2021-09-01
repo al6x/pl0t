@@ -1,0 +1,33 @@
+{
+  "chart": [
+    [
+      {
+        "mark": "tick"
+      },
+      {
+        "type": "ordinal",
+        "x": "type"
+      },
+      {
+        "vega": {
+          "axis": {
+            "values": [
+              50000,
+              5000000
+            ]
+          }
+        },
+        "y": "price"
+      }
+    ]
+  ],
+  "data": [
+    {
+      "price": 349000,
+      "state": "WA",
+      "type": "apartment"
+    }
+  ],
+  "desc": "Prices and median price. Per single apartment or house, with no regard of beds or area.",
+  "id": "Median Price per single Apartment or House2"
+}
