@@ -103,7 +103,7 @@ export type TimeUnit =
 
 
 // BinValue ----------------------------------------------------------------------------------------
-export type BinValue = boolean | number | 'binned.ts'
+export type BinValue = boolean | number | 'binned'
 
 
 // EncodingValue -----------------------------------------------------------------------------------

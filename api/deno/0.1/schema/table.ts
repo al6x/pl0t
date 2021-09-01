@@ -4,7 +4,7 @@ export type Type =
 
 
 // Formats -----------------------------------------------------------------------------------------
-export type Align = 'left' | 'center' | 'right.ts'
+export type Align = 'left' | 'center' | 'right'
 export interface StringFormatOptions {
   type: 'string'
   align?: Align
@@ -113,6 +113,6 @@ export type ColumnOrder = [string, 'asc' | 'desc']
 
 
 // ColumnFilter ------------------------------------------------------------------------------------
-export type  FilterCondition =   '<=' | '<' | '=' | '!=' | '>' | '>=' | '~.ts'
+export type  FilterCondition =   '<=' | '<' | '=' | '!=' | '>' | '>=' | '~'
 
 export type ColumnFilter = [FilterCondition, number | string | boolean]

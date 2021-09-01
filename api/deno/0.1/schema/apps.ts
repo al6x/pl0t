@@ -1,7 +1,7 @@
 import type { Block } from './blocks.ts'
 import type { DataUrl } from './plot.ts'
 
-export type Style = 'normal' | 'full' | 'narrow.ts'
+export type Style = 'normal' | 'full' | 'narrow'
 
 export interface Page {
   app:      ['page', 0.1]
