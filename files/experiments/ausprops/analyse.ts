@@ -110,7 +110,7 @@ function beds_to_sm(type: HAType, beds: number): number | undefined {
     desc: `
       Australian real estate use notion of "beds" instead of "square meters". It's too vague, would
       be better to use more formal and uniform measure, let's see how number of beds is related to
-      square meters.
+      square meters. For Houses, only the area of the Building accounted, the Land area ignored.
     `,
     chart: [
       'tick',
@@ -139,7 +139,8 @@ function beds_to_sm(type: HAType, beds: number): number | undefined {
         Taking closer look at correlation of beds and area, with 3 beds as example. Creating a
         histogram for ${smallest} houses and ${smallest} apartments.
         To have better understanding of the data shape and if it could be approximated with single
-        point estimation like median.
+        point estimation like median. For Houses, only the area of the Building accounted, the Land
+        area ignored.
       `,
       chart: [
         'bar',
@@ -187,6 +188,8 @@ function beds_to_sm(type: HAType, beds: number): number | undefined {
       not specified. The idea is - if property has huge size, the agent probably would mention it
       as an advantage. So if area is not specified it's probably a property with an average area, and
       we can use median as an approximation.
+
+      For Houses, only the area of the Building accounted, the Land area ignored.
     `,
     table: {
       columns: [
@@ -292,7 +295,11 @@ function beds_to_sm(type: HAType, beds: number): number | undefined {
     // Prices per m2
     page_main_section.push({
       id: 'Median Price per Square Meter',
-      desc: `Prices and median price per Square Meter.`,
+      desc: `
+        Prices and median price per Square Meter. For Houses, only the area of the Building accounted, the Land
+        area ignored. There should be a way to account the Land Area, I'm thinking about it and may update
+        the report in the future.
+      `,
       chart: [
         [
           { mark: 'tick', size: 5 },
@@ -373,8 +380,7 @@ function beds_to_sm(type: HAType, beds: number): number | undefined {
         id: `How to customise this report`,
         text: `
           This [report is open](https://github.com/al6x/pl0t/blob/main/files/experiments/ausprops/analyse.ts)
-          and you can run it yourself, if you wish to customise calculations or add your own.
-          You would need Deno to run it:
+          and you can run it yourself, to customise calculations or add your own. It requires Deno installed.
 
               deno run --allow-net --unstable https://raw.githubusercontent.com/al6x/pl0t/main/files/experiments/ausprops/analyse.ts > report-2021-08.html
               open report-2021-08.html
