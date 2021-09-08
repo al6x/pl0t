@@ -12,7 +12,7 @@ var page = Page.init %{
   Optimal Betting is what Buffet calls "The rule N1", also known as Kelly Criterion. It answers
   question how to **get max money while avoiding ruin**.
 
-  The game - there's a biased coin with 60% of win. You bet some money, if you won your bet is
+  The game - there's biased coin with 60% chance of win. You bet some money, if you won your bet is
   doubled, if not you loose the bet.
 
   ```Nim
@@ -23,7 +23,8 @@ var page = Page.init %{
     (money - betting) + (if biased_coin_toss: betting * 2 else: 0)
   ```
 
-  How to **win most money**? What proportion of your money should you bet in each game?
+  How to **maximise your win**? What proportion of your money should you bet in each game, 100%? Or
+  some fraction?
 
   [source]: https://github.com/al6x/pl0t/blob/main/files/experiments/optimal_betting/optimal_betting.nim
   """
@@ -85,18 +86,14 @@ block: # Plotting less players
 
 page.text "Why players loosing money?","""
 The game is winning, expected value for 100% bet is positive $E(bet=1)=1.2$ so why
-players loose money?
-
-The reason is over exposure, players betting too much and going bust.
+players loose money? The reason is over exposure, players betting too much and going bust.
 
 The expected value calculations are wrong, as they can't be applied to this case. Classical stats use
 space averages, assuming it will be the same as time averages. In some cases it works, but this case
 an many others cases in finance it doesn't.
 
-This game is not simple, even it may look so. It's nonlinear stochastic differential equation, and
-our intuition and common sense doesn't work well in such cases.
-
-Thankfully there's a good and simple way to deal with such cases using simulations.
+This game is not simple, even it may look so. It's SDE, and our intuition and common sense doesn't
+work well in such cases. Thankfully there's a good and simple way to deal with such cases using simulations.
 """
 
 
@@ -110,7 +107,7 @@ block: # Simulation with mean and mean growth
   let title = fmt"{players} players playing game, log scale"
   let desc = fmt"""
   Plotting same simulation for {players} players each playing {steps} times, sequentially with
-  same {simulation_bet} bet but with log scale, to better see what's going on.
+  same {simulation_bet} bet but with log scale.
 
   We can see that while there are some ups, eventually almost all players are loosing money and
   going to zero. Because they are over exposed.
@@ -207,7 +204,7 @@ It's important to know how this thing works, but it should be used wisely.
 
 # Source Code
 page.text fmt"Simulation code", fmt"""
-Full [source code](source)
+Full [source code][source]
 
 ```Nim
 {fs.read("./simulation.nim")}
