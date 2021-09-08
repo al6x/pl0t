@@ -7,12 +7,10 @@ We have powerful GPU in our brain, let's use it.
 
 App      | Demo
 -------- | --------------------------------------------------------------
-Notebook | **[Australian Real Estate][ausprops]**, [Page][notebook_page]
-Table    | [Units][table_units], [CSV][table_csv], [Countries][table_countries]
-Chart    | [Bar][chart_bar]
+Notebook | [Sample Page][notebook_page], [Optimal Betting][optibet], [Real Estate][ausprops]
+Table    | [Units][table_units], [CSV][table_csv], [Countries][table_countries], [Ruins][table_ruins]
+Chart    | [Bar][chart_bar], and all the charts in the background
 Text     | [Markdown with Code and Math][markdown_page], [This site][markdown_site]
-
-And all the charts in the background.
 
 # How to use
 
@@ -77,8 +75,6 @@ sales less than $1 million.
 For commercial businesses with annual sales greather than $1 million, the first month is free,
 after that it's $5 per developer per month.
 
-[full license](https://github.com/al6x/pl0t/tree/main/license).
-
 
 [deno_api]: https://github.com/al6x/pl0t/tree/main/api/deno
 [ruby_api]: https://github.com/al6x/pl0t/tree/main/api/ruby
@@ -91,11 +87,13 @@ after that it's $5 per developer per month.
 
 
 [notebook_page]: http://files.pl0t.com/view/samples/page/page.yml:view
+[optibet]: http://files.pl0t.com/experiments/optimal_betting/optimal_betting.html
 [ausprops]: http://files.pl0t.com/experiments/ausprops/report-2021-08.html
 
 [table_units]: http://files.pl0t.com/view/samples/table/units.yml:view
 [table_csv]: http://files.pl0t.com/view/samples/table/units.csv:view
 [table_countries]: http://files.pl0t.com/view/samples/table/countries.yml:view
+[table_ruins]: http://files.pl0t.com/experiments/ruins/ruins.yml:view
 
 [chart_bar]: http://files.pl0t.com/view/samples/chart/bar.yml:view
 

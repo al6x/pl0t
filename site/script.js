@@ -39,7 +39,7 @@
     while (!window.plot_api) await sleep(100)
     await sleep(500)
 
-    const images_n = 21
+    const images_n = 26
 
     // Images urls
     const images = []

@@ -1,15 +1,28 @@
-require base, pl0t, ./simulation
+# How to run:
+#
+# nim r optimal_betting.nim && open optimal_betting.html
 
+require base, pl0t, ./simulation
 
 var page = Page.init %{
   title: "Optimal Betting",
   desc: """
-  Finding an optimal way to deal with uncetainty. Using simple coin toss game as example.
+  *This [page is open][source] and you can run it yourself, customise calculations or add your own.*
 
-  The game - there's a biased coin with 60% of win. You bet some money, if you win your money doubled, if
-  not you loose you bet.
+  There's a biased coin with 60% of win. You bet some money, if coin won your bet is
+  doubled, if not you loose the bet.
 
-  What proportion of your money should you bet?
+  ```Nim
+  proc play*(money: float, bet: float): float =
+    if money <= 0.01: return 0.01 # Can't play when less than 0.01
+    let biased_coin_toss = rand(1..100) <= 60 # 60% probability of wining
+    let betting = money * bet
+    (money - betting) + (if biased_coin_toss: betting * 2 else: 0)
+  ```
+
+  How to **win most money**? What proportion of your money should you bet in each game?
+
+  [source]: https://github.com/al6x/pl0t/blob/main/files/experiments/optimal_betting/optimal_betting.nim
   """
 }
 let (blue, green, yellow, red, grey) = ("#1f77b4", "#047857", "#D97706", "#DC2626", "#4B5563")
@@ -18,8 +31,14 @@ let (players, steps, simulation_bet) = (100, 100, 0.6)
 let simulation = simulate(players, steps, simulation_bet)
 
 block: # Plotting simulation
-  let title = fmt"{players} players playing game {steps} times with {simulation_bet} bet"
-  page.chart title, simulation.games.to_columns, %[
+  let title = fmt"{players} players playing game"
+  let desc = fmt"""
+  Using simulation to play game for {players} players {steps} times, sequentially with
+  same {simulation_bet} bet.
+
+  This is loosing strategy, almost all players lost everything.
+  """
+  page.chart title, desc, simulation.games.to_columns, %[
     "line",
     { x: "step", title: "Game step" },
     { y: "money", title: "Money" },
@@ -34,6 +53,9 @@ block: # Plotting less players
 
   page.chart(
     fmt"5 players",
+    """
+    Not much could be seen on the previous chart, zooming in and limiting amount of players to 5.
+    """,
     less_players.to_columns,
     %[
       "line",
@@ -45,6 +67,9 @@ block: # Plotting less players
 
   page.chart(
     fmt"5 players, log scale",
+    """
+    Using log scale to better see the how hexactly players loose money.
+    """,
     less_players.to_columns,
     %[
       "line",
@@ -55,6 +80,24 @@ block: # Plotting less players
     ])
 
 
+page.text "Why players loosing money?","""
+The game is winning, expected walue for 100% bet is positive $E(1)=1.2$ so why
+players loose money?
+
+The reason is path-dependence, non linear growth and absorbing barrier. The expected value calculation above
+is wrong, classical statistics can't be used for non linear (non ergodic) processes.
+
+Classical stats use simplified calculations based on space averages assuming it will be the same as
+time averages, in some cases it works, but in most cases related to finances it doesn't.
+
+While this game looks simple, it's not simple. It's defined by discrete Differential Equation
+$S_t=F(S_{t-1})$, and even simple DE are not simple. Additionally it's non linear and random with
+non-gaussian randomness. Also, our intuition and common sense doesn't work well in such cases.
+
+Thankfully there's a reasonably good and simple way to deal with such cases - using simulations.
+"""
+
+
 block: # Simulation with mean and mean growth
   let data =
     simulation.games.map((v) => %v) &
@@ -62,8 +105,20 @@ block: # Simulation with mean and mean growth
     simulation.mean_growth.map((v, i) => %{ mgstep: i, mean_growth: [(v * i.float).exp, 0.01].max })
 
   let axis_config = %{ axis: { values: [0.01, 0.1, 1, 10, 100, 1000, 10000] } }
-  let title = fmt"{players} players playing game {steps} times, in log scale with {simulation_bet} bet"
-  page.chart title, data.to_columns, %[
+  let title = fmt"{players} players playing game, log scale"
+  let desc = fmt"""
+  Using simulation to play game for {players} players {steps} times, sequentially with
+  same {simulation_bet} bet.
+
+  """ & """
+  And plotting mean $\langle{X}\rangle$ (space average, blue) and
+  mean growth $\langle{ln{X}}\rangle$ (time average, green).
+
+  """ & fmt"""
+  As we can see those are **diverging**. Mean (wrongly) shows us that game with {simulation_bet}
+  bet is winning, while mean growth (correctly) shows us that game with {simulation_bet} bet is loosing.
+  """
+  page.chart title, desc, data.to_columns, %[
     [ # Games
       { mark: "line", color: grey, size: 1 },
       { x: "step", title: "Game step" },
@@ -95,8 +150,16 @@ block: # Optimal growth
       else:                      yellow
     (bet: d.bet, mean_growth: d.mean_growth, color: color)
   )
+  let desc = fmt"""
+  Using simulation to calculate mean growth for every bet size and choosing the maximal one. The optimal
+  bet is {optimal_bet}.
 
-  page.chart fmt"Optimal Growth", data, %[
+  - Smaller bets are safe but would produce less money.
+  - Larger but still positive bets are not make sense as it would produce less money is more risky
+    and also lock extra money costing us opportunity.
+  - Larger and negative bets means ruin.
+  """
+  page.chart fmt"Optimal Growth", desc, data, %[
     [
       "circle",
       { x: "bet", title: "Bet" },
@@ -115,14 +178,37 @@ block: # Optimal growth
     { height: 300 }
   ]
 
+page.text fmt"Usage in practice", fmt"""
+Optimal betting known in many forms, as Kelly Criterion or as Buffet calls it two most important rules
+of investing:
+
+> Rule No.1: Never lose money.
+>
+> Rule No.2: Never forget rule No.1
+
+When used in practice for optimal portfolio allocation, there are extra complications. Probabilities
+and game mechanics are unknown, multiple bets/games should be placed simultaneously, and there's no
+safe storage of money.
+
+It's very usefull to know about how optimal betting works but it's not always directly applicable
+to practice. And simpler approaches could be used like 1/N or Fractional Kelly.
+
+Also, searching for the most optimised solution is dangerous, because optimisation on subset of known
+data or overfitting produces fragile system that may break on unexpected event.
+
+It's important to know how this thing works, but it should be used wisely.
+"""
+
 
 # Source Code
 page.text fmt"Simulation code", fmt"""
-Full source
+Full [source code](source)
 
 ```Nim
 {fs.read("./simulation.nim")}
 ```
+
+[source]: https://github.com/al6x/pl0t/blob/main/files/experiments/optimal_betting/optimal_betting.nim
 """
 
 page.save "optimal_betting.html"

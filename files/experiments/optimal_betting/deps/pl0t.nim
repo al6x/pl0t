@@ -54,8 +54,8 @@ let standalone = """<!DOCTYPE html>
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-09-08-d32106/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-09-08-d32106/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-09-05-d32106/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-09-05-d32106/bundle.js"></script>
   <!-- PL0T end -->
 </head>
 <body>
@@ -94,6 +94,9 @@ proc table*[D](page: var Page, id: string, data: D, table: JsonNode = newJObject
 
 proc chart*[D](page: var Page, id: string, data: D, chart: JsonNode): void =
   page.page.add (id: id, chart: chart, data: data).to_json
+
+proc chart*[D](page: var Page, id: string, desc: string, data: D, chart: JsonNode): void =
+  page.page.add (id: id, desc: desc, chart: chart, data: data).to_json
 
 proc image*(page: var Page, id: string, data: JsonNode): void =
   page.page.add (id: id, image: data).to_json
