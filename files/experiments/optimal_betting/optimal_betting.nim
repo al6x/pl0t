@@ -5,11 +5,14 @@
 require base, pl0t, ./simulation
 
 var page = Page.init %{
-  title: "Optimal Betting",
+  title: "Investor's First Rule, Optimal Betting",
   desc: """
   *This [page is open][source] and you can run it yourself, customise calculations or add your own.*
 
-  There's a biased coin with 60% of win. You bet some money, if coin won your bet is
+  Optimal Betting is what Buffet calls "The rule N1", also known as Kelly Criterion. It answers
+  question how to **get max money while avoiding ruin**.
+
+  The game - there's a biased coin with 60% of win. You bet some money, if you won your bet is
   doubled, if not you loose the bet.
 
   ```Nim
@@ -33,7 +36,7 @@ let simulation = simulate(players, steps, simulation_bet)
 block: # Plotting simulation
   let title = fmt"{players} players playing game"
   let desc = fmt"""
-  Using simulation to play game for {players} players {steps} times, sequentially with
+  Using simulation to play game for {players} players each playing {steps} times, sequentially with
   same {simulation_bet} bet.
 
   This is loosing strategy, almost all players lost everything.
@@ -68,7 +71,7 @@ block: # Plotting less players
   page.chart(
     fmt"5 players, log scale",
     """
-    Using log scale to better see the how hexactly players loose money.
+    Using log scale to better see the how exactly players loose money.
     """,
     less_players.to_columns,
     %[
@@ -81,20 +84,19 @@ block: # Plotting less players
 
 
 page.text "Why players loosing money?","""
-The game is winning, expected walue for 100% bet is positive $E(1)=1.2$ so why
+The game is winning, expected value for 100% bet is positive $E(bet=1)=1.2$ so why
 players loose money?
 
-The reason is path-dependence, non linear growth and absorbing barrier. The expected value calculation above
-is wrong, classical statistics can't be used for non linear (non ergodic) processes.
+The reason is over exposure, players betting too much and going bust.
 
-Classical stats use simplified calculations based on space averages assuming it will be the same as
-time averages, in some cases it works, but in most cases related to finances it doesn't.
+The expected value calculations are wrong, as they can't be applied to this case. Classical stats use
+space averages, assuming it will be the same as time averages. In some cases it works, but this case
+an many others cases in finance it doesn't.
 
-While this game looks simple, it's not simple. It's defined by discrete Differential Equation
-$S_t=F(S_{t-1})$, and even simple DE are not simple. Additionally it's non linear and random with
-non-gaussian randomness. Also, our intuition and common sense doesn't work well in such cases.
+This game is not simple, even it may look so. It's nonlinear stochastic differential equation, and
+our intuition and common sense doesn't work well in such cases.
 
-Thankfully there's a reasonably good and simple way to deal with such cases - using simulations.
+Thankfully there's a good and simple way to deal with such cases using simulations.
 """
 
 
@@ -107,12 +109,15 @@ block: # Simulation with mean and mean growth
   let axis_config = %{ axis: { values: [0.01, 0.1, 1, 10, 100, 1000, 10000] } }
   let title = fmt"{players} players playing game, log scale"
   let desc = fmt"""
-  Using simulation to play game for {players} players {steps} times, sequentially with
-  same {simulation_bet} bet.
+  Plotting same simulation for {players} players each playing {steps} times, sequentially with
+  same {simulation_bet} bet but with log scale, to better see what's going on.
+
+  We can see that while there are some ups, eventually almost all players are loosing money and
+  going to zero. Because they are over exposed.
 
   """ & """
-  And plotting mean $\langle{X}\rangle$ (space average, blue) and
-  mean growth $\langle{ln{X}}\rangle$ (time average, green).
+  And plotting mean $\langle{X}\rangle$ (**space** average, blue) and
+  mean growth $\langle{ln{X}}\rangle$ (**time** average, green).
 
   """ & fmt"""
   As we can see those are **diverging**. Mean (wrongly) shows us that game with {simulation_bet}
@@ -156,8 +161,8 @@ block: # Optimal growth
 
   - Smaller bets are safe but would produce less money.
   - Larger but still positive bets are not make sense as it would produce less money is more risky
-    and also lock extra money costing us opportunity.
-  - Larger and negative bets means ruin.
+    and lock extra money costing opportunity.
+  - Larger negative bets means ruin.
   """
   page.chart fmt"Optimal Growth", desc, data, %[
     [
