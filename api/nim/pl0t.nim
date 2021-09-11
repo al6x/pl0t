@@ -1,7 +1,7 @@
 import std/httpclient, std/strformat, std/os, std/tables, std/strutils
 
-when (compiles do: require base):
-  require base
+when (compiles do: import base):
+  import base
 else:
   import std/json, std/jsonutils
   proc to_json_hook*(n: JsonNode): JsonNode = n
