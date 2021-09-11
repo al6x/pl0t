@@ -2,12 +2,12 @@
 #
 # nim r optimal_betting.nim && open optimal_betting.html
 
-require base, pl0t, ./simulation
+import base, pl0t, ./simulation as m1
 
 var page = Page.init %{
   title: "Investor's First Rule, Optimal Betting",
   desc: """
-  *This [page is open][source] and you can run it yourself, customise calculations or add your own.*
+  *This [page is open][source] and you can customise calculations or add your own.*
 
   Optimal Betting is what Buffet calls "The rule N1", also known as Kelly Criterion. It answers
   question how to **get max money while avoiding ruin**.
@@ -88,7 +88,7 @@ page.text "Why players loosing money?","""
 The game is winning, expected value for 100% bet is positive $E(bet=1)=1.2$ so why
 players loose money? The reason is over exposure, players betting too much and going bust.
 
-The expected value calculations are wrong, as they can't be applied to this case. Classical stats use
+The expected value calculations are wrong, as it can't be applied to this case.  Classical stats use
 space averages, assuming it will be the same as time averages. In some cases it works, but this case
 an many others cases in finance it doesn't.
 
@@ -157,7 +157,7 @@ block: # Optimal growth
   bet is {optimal_bet}.
 
   - Smaller bets are safe but would produce less money.
-  - Larger but still positive bets are not make sense as it would produce less money is more risky
+  - Larger but still positive bets are not make sense as it would produce less money are more risky
     and lock extra money costing opportunity.
   - Larger negative bets means ruin.
   """
@@ -166,7 +166,7 @@ block: # Optimal growth
       "circle",
       { x: "bet", title: "Bet" },
       { y: "mean_growth", title: "Mean Growth" },
-      { color: "color", type: "nominal", vega: { scale: nil } },
+      { color: "color", title: "Bet", type: "nominal", vega: { scale: nil } },
       # { color: "", value: ["datum.mean_growth >= 0", "green", "red"] },
     ],
     [
@@ -193,7 +193,7 @@ and game mechanics are unknown, multiple bets/games should be placed simultaneou
 safe storage of money.
 
 It's very usefull to know about how optimal betting works but it's not always directly applicable
-to practice. And simpler approaches could be used like 1/N or Fractional Kelly.
+to practice. And simpler approaches could be used like 1/N, House Money and Fractional Kelly.
 
 Also, searching for the most optimised solution is dangerous, because optimisation on subset of known
 data or overfitting produces fragile system that may break on unexpected event.

@@ -32,6 +32,11 @@
   color: white;
 }
 
+pre:first-of-type {
+  background: #222;
+  color: white !important;
+}
+
 /* Cards */
 body { position: relative; }
 .wail {

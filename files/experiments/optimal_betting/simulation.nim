@@ -1,4 +1,4 @@
-require base, std/random
+import base, std/random
 randomize 4
 
 proc play*(money: float, bet: float): float =
