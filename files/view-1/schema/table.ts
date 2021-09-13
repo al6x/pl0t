@@ -61,6 +61,8 @@ export type FormatOptions =
   StringFormatOptions | NumberFormatOptions | BooleanFormatOptions | LineFormatOptions | UnknownFormatOptions |
   ImageFormatOptions | LinkFormatOptions
 
+export type TableWidth = 'normal' | 'full'
+
 
 // Table -------------------------------------------------------------------------------------------
 export interface Table {
@@ -86,6 +88,8 @@ export interface Table {
   sortable?:      boolean // default = true
   show_controls?: boolean // default = true
   show_toolbar?:  boolean // default = true
+
+  width?:         TableWidth // default = 'normal'
 
   debug?:         boolean // default = false, used for debug
 }
