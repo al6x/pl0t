@@ -1,6 +1,6 @@
 // Types -------------------------------------------------------------------------------------------
 export type Type =
-  'string' | 'number' | 'boolean' | 'unknown'
+  'string' | 'number' | 'boolean' | 'array' | 'unknown'
 
 
 // Formats -----------------------------------------------------------------------------------------
@@ -35,6 +35,21 @@ export interface LineFormatOptions {
   log_unit?: boolean | number // default = false
 }
 
+export interface BarFormatOptions {
+  type:    'bar'
+  small?:  boolean // small font size, false by default
+  color?:  string
+  ticks?:  number[]
+  scale?:  'linear' | 'log' // default = linear
+  height?: 'small' | 'normal' | 'large'
+
+  // 'log_unit' could be used with log scale only, it replaces values in [0..1] range with 1, usefull to
+  // display quantity of some units, like money. When we would like to round small values with less than
+  // $1 cash, to avoid log being negative.
+  // If number used, the value will be multiplied by this number before flooring to 1.
+  log_unit?: boolean | number // default = false
+}
+
 export interface BooleanFormatOptions {
   type:   'boolean'
   // align?: Align
@@ -59,7 +74,7 @@ export interface LinkFormatOptions {
 
 export type FormatOptions =
   StringFormatOptions | NumberFormatOptions | BooleanFormatOptions | LineFormatOptions | UnknownFormatOptions |
-  ImageFormatOptions | LinkFormatOptions
+  ImageFormatOptions | LinkFormatOptions | BarFormatOptions
 
 export type TableWidth = 'normal' | 'full'
 

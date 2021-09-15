@@ -1,0 +1,14 @@
+table:
+  columns: [
+    { id: id, title: "" },
+    { id: sales,  format: { type: bar, ticks: [80, 100] } },
+    { id: debt,   format: { type: bar, ticks: [-80, -100] } },
+    { id: change, format: { type: bar, ticks: [-80, 80], height: large } },
+    { id: log,    format: { type: bar, ticks: [0.01, 0.1, 1, 10, 100], height: large, scale: log } },
+  ]
+  width: full
+
+data: [
+  ["MSFT", [10, 30, 40,   80, 60, 95], [-10, -30], [10, -30, 40,   -80, 60, 95], [10, 0.1, 100, 0.01]],
+  ["INTC", [20, 60, null, 20],         [-20, -90], null],
+]

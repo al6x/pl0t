@@ -1,7 +1,7 @@
 table:
   columns: [
     { id: country },
-    { id: economy_score, format: { type: line } },
+    { id: economy_score, format: { type: line, ticks: [ -1, 1] } },
     { id: gov_spending,  format: { type: line, ticks: [ 50, 100 ] } },
     { id: age_0_14,      format: { type: line, ticks: [ 50, 100 ] } }
   ]

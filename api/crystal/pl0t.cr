@@ -66,8 +66,8 @@ class Page
         base_url: "http://files.pl0t.com/view-1"
       }
     </script>
-    <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-09-13-5cd3a7/bundle.css">
-    <script defer src="http://files.pl0t.com/view-1/releases/2021-09-13-5cd3a7/bundle.js"></script>
+    <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-09-15-f98bd2/bundle.css">
+    <script defer src="http://files.pl0t.com/view-1/releases/2021-09-15-f98bd2/bundle.js"></script>
     <!-- PL0T end -->
   </head>
   <body>
