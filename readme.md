@@ -1,4 +1,8 @@
+UPDATE: I don't support this project anymore, the site is down.
+
 **PL0T and See the Data** http://pl0t.com
+
+![](readme/screen1.png)
 
 A plot document is **plain html**. You can open it **locally or share** on any site.
 
