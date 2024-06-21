@@ -73,4 +73,4 @@ page.save "play.html"
 ```
 
 For all possible options checkout [online demos](http://pl0t.com) and the
-  [data schema](https://github.com/al6x/pl0t/blob/main/files/view-1/schema/blocks.ts).
+  [data schema](https://github.com/al6x/pl0t/blob/main/files/view/schema/blocks.ts).
