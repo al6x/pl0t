@@ -54,8 +54,8 @@ let standalone = """<!DOCTYPE html>
       base_url: "http://files.pl0t.com/view-1"
     }
   </script>
-  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-09-15-f98bd2/bundle.css">
-  <script defer src="http://files.pl0t.com/view-1/releases/2021-09-15-f98bd2/bundle.js"></script>
+  <link rel="stylesheet" href="http://files.pl0t.com/view-1/releases/2021-09-28-3bf2df/bundle.css">
+  <script defer src="http://files.pl0t.com/view-1/releases/2021-09-28-3bf2df/bundle.js"></script>
   <!-- PL0T end -->
 </head>
 <body>
@@ -92,8 +92,14 @@ proc text*(page: var Page, id: string, text: string): void =
 proc table*[D](page: var Page, id: string, data: D, table: JsonNode = newJObject()): void =
   page.page.add (id: id, table: table, data: data).to_json
 
+proc table*[D](page: var Page, id: string, desc: string, data: D, table: JsonNode = newJObject()): void =
+  page.page.add (id: id, table: table, desc: desc, data: data).to_json
+
 proc chart*[D](page: var Page, id: string, data: D, chart: JsonNode): void =
   page.page.add (id: id, chart: chart, data: data).to_json
+
+proc chart*[D](page: var Page, id: string, desc: string, data: D, chart: JsonNode): void =
+  page.page.add (id: id, desc: desc, chart: chart, data: data).to_json
 
 proc image*(page: var Page, id: string, data: JsonNode): void =
   page.page.add (id: id, image: data).to_json
@@ -111,4 +117,7 @@ proc save*(page: Page, path: string, pretty = false): void =
   let json_s = convert_to_json(json, pretty)
   let html = standalone.replace("{type}", "json").replace("{data}", json_s)
   if file_exists path: remove_file path
-  write_file(path, html)
+  when compiles(fs.write(path, html)):
+    fs.write(path, html) # Creates parent dirs automatically
+  else:
+    write_file(path, html)

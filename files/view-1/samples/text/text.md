@@ -12,6 +12,8 @@ And **KaTeX** snippets $E=mc^2$ and blocks
 
 $$f(x) = ax^2 + bx + c$$
 
+$$\mu_{MLE} = \frac{1}{N}\sum\limits_{n=1}^{N} x_{n}$$
+
 Simple **table**
 
 Header 1 | Header 2

@@ -8,7 +8,7 @@ We have powerful GPU in our brain, let's use it.
 App      | Demo
 -------- | --------------------------------------------------------------
 Notebook | [Sample Page][notebook_page], [Optimal Betting][optibet], [Real Estate][ausprops]
-Table    | [Units][table_units], [CSV][table_csv], [Countries][table_countries], [Ruins][table_ruins], [Bars][table_bars]
+Table    | [Units][table_units], [CSV][table_csv], [Countries][table_countries], [Ruins][table_ruins], [Bars][table_bars], [HBars][table_hbars]
 Chart    | [Bar][chart_bar], and all the charts in the background
 Text     | [Markdown with Code and Math][markdown_page], [This site][markdown_site]
 
@@ -97,6 +97,7 @@ after that it's $5 per developer per month.
 [table_countries]: http://files.pl0t.com/view/samples/table/countries.yml:view
 [table_ruins]: http://files.pl0t.com/experiments/ruins/ruins.yml:view
 [table_bars]: http://files.pl0t.com/view/samples/table/bar.yml:view
+[table_hbars]: http://files.pl0t.com/view/samples/table/hbar.yml:view
 
 [chart_bar]: http://files.pl0t.com/view/samples/chart/bar.yml:view
 

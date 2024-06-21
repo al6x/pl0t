@@ -21,12 +21,13 @@ export interface NumberFormatOptions {
 }
 
 export interface LineFormatOptions {
-  type:    'line'
-  align?:  Align
-  small?:  boolean // small font size, false by default
-  color?:  string
-  ticks?:  number[]
-  scale?:  'linear' | 'log' // default = linear
+  type:     'line'
+  align?:   Align
+  small?:   boolean // small font size, false by default
+  color?:   string
+  colorfn?: string // expression with v variable, "v >= 0 ? 'green' : 'red'"
+  ticks?:   number[]
+  scale?:   'linear' | 'log' // default = linear
 
   // 'log_unit' could be used with log scale only, it replaces values in [0..1] range with 1, usefull to
   // display quantity of some units, like money. When we would like to round small values with less than
@@ -36,12 +37,14 @@ export interface LineFormatOptions {
 }
 
 export interface BarFormatOptions {
-  type:    'bar'
-  small?:  boolean // small font size, false by default
-  color?:  string
-  ticks?:  number[]
-  scale?:  'linear' | 'log' // default = linear
-  height?: 'small' | 'normal' | 'large'
+  type:        'bar'
+  small?:      boolean // small font size, false by default
+  color?:      string
+  colorfn?:    string  // expression with v and i variables, "v >= 0 ? 'green' : 'red'"
+  ticks?:      number[]
+  scale?:      'linear' | 'log' // default = linear
+  height?:     'small' | 'normal' | 'large'
+  horizontal?: boolean // autodetected by default
 
   // 'log_unit' could be used with log scale only, it replaces values in [0..1] range with 1, usefull to
   // display quantity of some units, like money. When we would like to round small values with less than
@@ -101,7 +104,7 @@ export interface Table {
   id?:            string
   selectable?:    boolean // default = true
   sortable?:      boolean // default = true
-  show_controls?: boolean // default = true
+  // show_controls?: boolean // default = true
   show_toolbar?:  boolean // default = true
 
   width?:         TableWidth // default = 'normal'
