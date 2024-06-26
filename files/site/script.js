@@ -43,7 +43,7 @@
 
     // Images urls
     const images = []
-    for (let i = 1; i <= images_n; i++) { images.push(`http://pl0t.com/samples/${i}.png`) }
+    for (let i = 1; i <= images_n; i++) { images.push(`samples/${i}.png`) }
 
     const pane = document.getElementsByClassName('pane')[0]
 

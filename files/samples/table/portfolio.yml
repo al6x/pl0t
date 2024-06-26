@@ -1,41 +1,42 @@
-version: 0.1
-sort: [[mv_usd, desc]]
-columns: [
-  {
-    id:    mv_usd,
-    type:  number,
-    format: {
-      type:     line,
-      scale:    log,
-      log_unit: true,
-      ticks:    [100, 1000, 10000]
-    }
-  },
-  {
-    id:    tenor,
-    type:  number,
-    format: {
-      type:  line,
-      ticks: [180, 360, 720]
-    }
-  },
-  {
-    id:    right,
-    type:  string
-  },
-  {
-    id:    symbol,
-    type:  string
-  },
-  {
-    id:    contract_id,
-    type:  string,
-    format: {
+table:
+  version: 0.1
+  sort: [[mv_usd, desc]]
+  columns: [
+    {
+      id:    mv_usd,
+      type:  number,
+      format: {
+        type:     line,
+        scale:    log,
+        log_unit: true,
+        ticks:    [100, 1000, 10000]
+      }
+    },
+    {
+      id:    tenor,
+      type:  number,
+      format: {
+        type:  line,
+        ticks: [180, 360, 720]
+      }
+    },
+    {
+      id:    right,
+      type:  string
+    },
+    {
+      id:    symbol,
+      type:  string
+    },
+    {
+      id:    contract_id,
       type:  string,
-      small: true
+      format: {
+        type:  string,
+        small: true
+      }
     }
-  }
-]
+  ]
 data: [
   {
     contract_id: CCJ CALL 2023-01-20 25.0 USD,
